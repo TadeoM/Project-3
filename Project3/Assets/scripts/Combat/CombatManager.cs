@@ -43,10 +43,10 @@ public class CombatManager : MonoBehaviour {
             {
 
                 //If the current creature's speed is greater than the max speed;
-                if (allCreatures[i].speed>maxSpeed)
+                if (allCreatures[i].Speed>maxSpeed)
                 {
                     //Set the max speed value to the current 
-                    maxSpeed = allCreatures[i].speed;
+                    maxSpeed = allCreatures[i].Speed;
                     //Get the index of the creature we may want to add to the queue.
                     creatureIndex = i;
                 }

@@ -5,13 +5,17 @@ using UnityEngine;
 public class Creature : MonoBehaviour {
 
     // declare attributes
+    public int currentHealth;
+    public int currentMana;
+    public List<Ability> knownAbilities;
     private int level;
+    private int nextLevelXP;
     private int experience;
     private int maxHealth;
     private int maxMana;
 
-    public int Attack { get; set; }
-    public int Defense { get; set; }
+    public float Attack { get; set; }
+    public float Defense { get; set; }
     public int Speed { get; set; }
     private string[] abilities;
 
@@ -27,19 +31,43 @@ public class Creature : MonoBehaviour {
     public int MaxHealth
     {
         get { return maxHealth; }
-        set { maxHealth = value; }
     }
     public int MaxMana
     {
         get { return maxMana; }
-        set { maxMana = value; }
+    }
+
+    public void IncreasExperience()
+    {
+        bool checkedLevel = false;
+
+        while (checkedLevel)
+        {
+            if (experience >= nextLevelXP)
+            {
+                level++;
+            }
+            else
+            {
+                checkedLevel = true;
+            }
+        }
     }
 
     void GetAttackChoice()
     {
     }
 
-    void DealDamage(GameObject otherCreature)
+    virtual public void OffensiveAbility(GameObject otherCreature, Ability attack)
+    {
+        Creature creatureStats = otherCreature.GetComponent<Creature>();
+        currentMana -= attack.manaRequired;
+        creatureStats.currentHealth -= attack.damage;
+        creatureStats.currentMana -= attack.manaRemoval;
+        creatureStats.Defense = creatureStats.Defense * attack.defenseDebuff;
+
+    }
+    virtual public void DefensiveAbility(Ability ability)
     {
 
     }
