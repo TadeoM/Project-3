@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CombatManager : MonoBehaviour {
 
-    public Dresdon playerCharacter;
+    Creature playerCharacter;
 
     List<Creature> enemies = new List<Creature>();
 
@@ -13,7 +13,12 @@ public class CombatManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        playerCharacter = GameObject.FindGameObjectWithTag("player").gameObject.GetComponent<Dresdon>();
+        GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("enemy");
+        foreach (var enemy in enemyObjects)
+        {
+            enemies.Add(enemy.GetComponent<Creature>());
+        }
 	}
 	
 	// Update is called once per frame
@@ -43,10 +48,10 @@ public class CombatManager : MonoBehaviour {
             {
 
                 //If the current creature's speed is greater than the max speed;
-                if (allCreatures[i].speed>maxSpeed)
+                if (allCreatures[i].Speed>maxSpeed)
                 {
                     //Set the max speed value to the current 
-                    maxSpeed = allCreatures[i].speed;
+                    maxSpeed = allCreatures[i].Speed;
                     //Get the index of the creature we may want to add to the queue.
                     creatureIndex = i;
                 }
@@ -62,21 +67,20 @@ public class CombatManager : MonoBehaviour {
         
     }
 
-   void ProgressTurnOrder()
+    /// <summary>
+    /// Moves the guy at the front of the line to the back.
+    /// </summary>
+    void ProgressTurnOrder()
     {
         //Take the top element of the attack order and move it to the bottom of the queue.
         attackOrder.Enqueue(attackOrder.Peek());
 
         //Remove the top element of the attack order.
         attackOrder.Dequeue();
-
-        //This effectively moves the guy at the front of the line to the back.
     }
 
     void NewTurn()
     {
-
-
         //Get the creature's move
 
         //Display the results of the move
