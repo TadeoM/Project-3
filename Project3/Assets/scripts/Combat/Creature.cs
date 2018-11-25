@@ -6,7 +6,7 @@ public class Creature : MonoBehaviour {
 
     // declare attributes
     public string currentAbilityChoice;
-    public Dictionary<string, int> knownAbilities; // the string contains the name, and the int is in what 'phase' the creature can use the ability
+    public Dictionary<string, int> knownAbilities = new Dictionary<string, int>(); // the string contains the name, and the int is in what 'phase' the creature can use the ability
     public SpellManager spellManager;
     public GameObject currentTarget;
     public Stats stats;
@@ -16,20 +16,13 @@ public class Creature : MonoBehaviour {
     private int maxHealth;
     private int maxMana;
     private int ammo;
-    private int currentHealth;
+    public int currentHealth;
     private int currentMana;
 
     public int CurrentMana
     {
         get { return currentMana; }
         set { currentMana = value; }
-    }
-
-
-    virtual public int CurrentHealth
-    {
-        get { return currentHealth; }
-        set { currentHealth = value; }
     }
 
     // properties
@@ -67,6 +60,7 @@ public class Creature : MonoBehaviour {
     public void Awake()
     {
         spellManager = GameObject.FindGameObjectWithTag("spellManager").GetComponent<SpellManager>();
+        nextLevelXP = 100;
         maxHealth = stats.health;
         maxMana = stats.mana;
         ammo = stats.ammo;
@@ -81,7 +75,7 @@ public class Creature : MonoBehaviour {
         }
     }
     // continues to add levels until it does not have enough experience to level up again
-    public void IncreasExperience()
+    public void IncreaseExperience()
     {
         
         bool checkedLevel = false;
@@ -91,6 +85,7 @@ public class Creature : MonoBehaviour {
             if (experience >= nextLevelXP)
             {
                 level++;
+                nextLevelXP += 100;
             }
             else
             {
@@ -101,8 +96,9 @@ public class Creature : MonoBehaviour {
     /// <summary>
     /// take thhe current ability choice and pass in the values needed to perform the attack
     /// </summary>
-    public void SelectAttackChoice()
+    public string SelectAttackChoice()
     {
+        Debug.Log(this.gameObject.name);
         string[] neededStats = spellManager.abilitiesDictionary[currentAbilityChoice];
         List<float> stats = new List<float>();
         for (int i = 0; i < neededStats.Length; i++)
@@ -128,6 +124,15 @@ public class Creature : MonoBehaviour {
                     break;
             }
         }
-        spellManager.CallAbility(currentAbilityChoice, this.gameObject, currentTarget, stats);
+        return spellManager.CallAbility(currentAbilityChoice, this.gameObject, currentTarget, stats);
+    }
+    virtual public string GetChoice() { return "This is the creature GetChoice"; }
+    
+    public bool CheckDeath()
+    {
+        if (currentHealth <= 0)
+            return true;
+        else
+            return false;
     }
 }

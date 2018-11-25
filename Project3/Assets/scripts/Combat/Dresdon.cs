@@ -6,9 +6,8 @@ public class Dresdon : Creature {
 
 	// Use this for initialization
 	void Start () {
-        knownAbilities.Add("PistolShot", 0);
-        knownAbilities.Add("StaffAttack", 0);
-	}
+        currentTarget = GameObject.FindGameObjectWithTag("enemy");
+    }
 	
 	// Update is called once per frame
 	void Update () {

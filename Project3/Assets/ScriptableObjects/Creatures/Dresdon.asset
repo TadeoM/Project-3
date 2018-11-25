@@ -21,3 +21,4 @@ MonoBehaviour:
   abilityNames:
   - PistolShot
   - StaffAttack
+  phaseUseable: 0100000001000000
