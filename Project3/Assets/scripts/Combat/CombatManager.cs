@@ -103,12 +103,15 @@ public class CombatManager : MonoBehaviour {
         {
             Enemy currentEnemy = attackOrder.Peek().GetComponent<Enemy>();
             currentEnemy.GetChoice();
-            currentEnemy.SelectAttackChoice();
+            string whatHappened = currentEnemy.SelectAttackChoice();
+            Debug.Log(whatHappened);
             takenTurn = true;
         }
         else if (attackOrder.Peek().currentAbilityChoice != "")
         {
-            attackOrder.Peek().SelectAttackChoice();
+            string whatHappened = attackOrder.Peek().SelectAttackChoice();
+            attackOrder.Peek().currentAbilityChoice = "";
+            Debug.Log(whatHappened);
             takenTurn = true;
         }
         if (attackOrder.Peek().currentTarget.GetComponent<Creature>().CheckDeath())

@@ -54,6 +54,7 @@ public class SpellManager : MonoBehaviour {
     public string PistolShot(GameObject origin, GameObject otherCreature, float attackMod)
     {
         Creature otherStats = otherCreature.GetComponent<Creature>();
+        Debug.Log(attackMod);
         int damage = (int)(10 * attackMod);
         otherStats.currentHealth -= damage;
         origin.GetComponent<Creature>().Ammo--;

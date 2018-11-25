@@ -98,7 +98,7 @@ public class Creature : MonoBehaviour {
     /// </summary>
     public string SelectAttackChoice()
     {
-        Debug.Log(this.gameObject.name);
+        //Debug.Log(this.gameObject.name);
         string[] neededStats = spellManager.abilitiesDictionary[currentAbilityChoice];
         List<float> stats = new List<float>();
         for (int i = 0; i < neededStats.Length; i++)
@@ -124,12 +124,14 @@ public class Creature : MonoBehaviour {
                     break;
             }
         }
+        
         return spellManager.CallAbility(currentAbilityChoice, this.gameObject, currentTarget, stats);
     }
     virtual public string GetChoice() { return "This is the creature GetChoice"; }
     
     public bool CheckDeath()
     {
+        Debug.Log(this.gameObject.name + "  CURRENT HEALTH IS " + currentHealth);
         if (currentHealth <= 0)
             return true;
         else

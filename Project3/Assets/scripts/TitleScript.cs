@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TitleScript : MonoBehaviour {
     /// set attribues
-    /// 
+    
     public GameObject boardParent;
     public Vector3 boardPosition;
     Vector3 menuPosition;
@@ -91,8 +92,9 @@ public class TitleScript : MonoBehaviour {
         currStart = boardPosition;
         currEnd = menuPosition;
     }
-    public void StartMission()
+    public void StartMission(string name)
     {
         Debug.Log("Starting Mission selected");
+        SceneManager.LoadScene(name);
     }
 }

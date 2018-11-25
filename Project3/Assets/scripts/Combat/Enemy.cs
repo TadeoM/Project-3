@@ -41,7 +41,7 @@ public class Enemy : Creature {
     override public string GetChoice()
     {
         int randomChoice = Random.Range(0, knownAbilityNames.Count-1);
-        Debug.Log(randomChoice);
+        //Debug.Log(randomChoice);
         currentAbilityChoice = knownAbilityNames[randomChoice];
         if (knownAbilities[currentAbilityChoice] > currentStage)
         {

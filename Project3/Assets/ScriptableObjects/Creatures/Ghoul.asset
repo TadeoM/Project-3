@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Ghoul
   m_EditorClassIdentifier: 
   name: 
-  health: 10
+  health: 14
   mana: 4
   ammo: 0
   attack: 1
