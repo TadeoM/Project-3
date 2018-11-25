@@ -19,4 +19,5 @@ MonoBehaviour:
   defense: 1
   speed: 1
   abilityNames:
-  - BassicAttack
+  - BasicAttack
+  phaseUseable: 01000000

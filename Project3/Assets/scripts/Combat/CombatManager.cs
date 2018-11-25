@@ -9,21 +9,37 @@ public class CombatManager : MonoBehaviour {
     List<Creature> enemies = new List<Creature>();
 
     Queue<Creature> attackOrder = new Queue<Creature>();
+    bool takenTurn;
+    string winner;
 
 
 	// Use this for initialization
 	void Start () {
-        playerCharacter = GameObject.FindGameObjectWithTag("player").gameObject.GetComponent<Dresdon>();
+        winner = "nil";
+        takenTurn = false;
+        GameObject dresdon = GameObject.FindGameObjectWithTag("player");
+        playerCharacter = GameObject.FindGameObjectWithTag("player").GetComponent<Creature>();
         GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("enemy");
         foreach (var enemy in enemyObjects)
         {
-            enemies.Add(enemy.GetComponent<Creature>());
+            enemies.Add(enemy.GetComponent<Enemy>());
         }
-	}
+        DetermineAttackOrder();
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		
+        Debug.Log(playerCharacter.knownAbilities);
+        
+        if(attackOrder.Peek() != null)
+        {
+            CalculateTurn();
+        }
+        else if(winner != "nil")
+        {
+            Debug.Log("The winner of this fight is " + winner);
+        }
+        
 	}
 
     void DetermineAttackOrder()
@@ -72,6 +88,7 @@ public class CombatManager : MonoBehaviour {
     /// </summary>
     void ProgressTurnOrder()
     {
+        takenTurn = false;
         //Take the top element of the attack order and move it to the bottom of the queue.
         attackOrder.Enqueue(attackOrder.Peek());
 
@@ -79,15 +96,36 @@ public class CombatManager : MonoBehaviour {
         attackOrder.Dequeue();
     }
 
-    void NewTurn()
+    void CalculateTurn()
     {
         //Get the creature's move
-
+        if (attackOrder.Peek().gameObject.tag == "enemy")
+        {
+            Enemy currentEnemy = attackOrder.Peek().GetComponent<Enemy>();
+            currentEnemy.GetChoice();
+            currentEnemy.SelectAttackChoice();
+            takenTurn = true;
+        }
+        else if (attackOrder.Peek().currentAbilityChoice != "")
+        {
+            attackOrder.Peek().SelectAttackChoice();
+            takenTurn = true;
+        }
+        if (attackOrder.Peek().currentTarget.GetComponent<Creature>().CheckDeath())
+        {
+            Destroy(attackOrder.Peek().currentTarget);
+            winner = attackOrder.Peek().gameObject.name;
+        }
         //Display the results of the move
 
+
         //Move to the next character
-        ProgressTurnOrder();
+        if (takenTurn)
+            ProgressTurnOrder();
     }
 
-
+    public void ChangeChoice(string name)
+    {
+        attackOrder.Peek().currentAbilityChoice = name;
+    }
 }
