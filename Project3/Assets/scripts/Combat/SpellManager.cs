@@ -37,7 +37,7 @@ public class SpellManager : MonoBehaviour {
     /// </summary>
     /// <param name="otherCreature"></param>
     /// <param name="attackMod"></param>
-    public string BasicAttack(GameObject origin, GameObject otherCreature, float attackMod)
+    public string BasicAttack(GameObject origin, GameObject otherCreature, float attackMod, float mana)
     {
         Creature otherStats = otherCreature.GetComponent<Creature>();
         int damage = (int)(6 * attackMod);

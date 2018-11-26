@@ -9,7 +9,9 @@ public class Stats : ScriptableObject
     public int mana;
     public int ammo;
     public float attack;
+    public float magic;
     public float defense;
+    public float resistance;
     public float speed;
     public List<string> abilityNames;
     public List<int> phaseUseable;
