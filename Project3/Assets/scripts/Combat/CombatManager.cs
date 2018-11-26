@@ -4,21 +4,42 @@ using UnityEngine;
 
 public class CombatManager : MonoBehaviour {
 
-    public Dresdon playerCharacter;
+    Creature playerCharacter;
 
     List<Creature> enemies = new List<Creature>();
 
     Queue<Creature> attackOrder = new Queue<Creature>();
+    bool takenTurn;
+    string winner;
 
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+        winner = "nil";
+        takenTurn = false;
+        GameObject dresdon = GameObject.FindGameObjectWithTag("player");
+        playerCharacter = GameObject.FindGameObjectWithTag("player").GetComponent<Creature>();
+        GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("enemy");
+        foreach (var enemy in enemyObjects)
+        {
+            enemies.Add(enemy.GetComponent<Enemy>());
+        }
+        DetermineAttackOrder();
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		
+        Debug.Log(playerCharacter.knownAbilities);
+        
+        if(attackOrder.Peek() != null)
+        {
+            CalculateTurn();
+        }
+        else if(winner != "nil")
+        {
+            Debug.Log("The winner of this fight is " + winner);
+        }
+        
 	}
 
     void DetermineAttackOrder()
@@ -43,10 +64,10 @@ public class CombatManager : MonoBehaviour {
             {
 
                 //If the current creature's speed is greater than the max speed;
-                if (allCreatures[i].speed>maxSpeed)
+                if (allCreatures[i].Speed>maxSpeed)
                 {
                     //Set the max speed value to the current 
-                    maxSpeed = allCreatures[i].speed;
+                    maxSpeed = allCreatures[i].Speed;
                     //Get the index of the creature we may want to add to the queue.
                     creatureIndex = i;
                 }
@@ -62,28 +83,52 @@ public class CombatManager : MonoBehaviour {
         
     }
 
-   void ProgressTurnOrder()
+    /// <summary>
+    /// Moves the guy at the front of the line to the back.
+    /// </summary>
+    void ProgressTurnOrder()
     {
+        takenTurn = false;
         //Take the top element of the attack order and move it to the bottom of the queue.
         attackOrder.Enqueue(attackOrder.Peek());
 
         //Remove the top element of the attack order.
         attackOrder.Dequeue();
-
-        //This effectively moves the guy at the front of the line to the back.
     }
 
-    void NewTurn()
+    void CalculateTurn()
     {
-
-
         //Get the creature's move
-
+        if (attackOrder.Peek().gameObject.tag == "enemy")
+        {
+            Enemy currentEnemy = attackOrder.Peek().GetComponent<Enemy>();
+            currentEnemy.GetChoice();
+            string whatHappened = currentEnemy.SelectAttackChoice();
+            Debug.Log(whatHappened);
+            takenTurn = true;
+        }
+        else if (attackOrder.Peek().currentAbilityChoice != "")
+        {
+            string whatHappened = attackOrder.Peek().SelectAttackChoice();
+            attackOrder.Peek().currentAbilityChoice = "";
+            Debug.Log(whatHappened);
+            takenTurn = true;
+        }
+        if (attackOrder.Peek().currentTarget.GetComponent<Creature>().CheckDeath())
+        {
+            Destroy(attackOrder.Peek().currentTarget);
+            winner = attackOrder.Peek().gameObject.name;
+        }
         //Display the results of the move
 
+
         //Move to the next character
-        ProgressTurnOrder();
+        if (takenTurn)
+            ProgressTurnOrder();
     }
 
-
+    public void ChangeChoice(string name)
+    {
+        attackOrder.Peek().currentAbilityChoice = name;
+    }
 }
