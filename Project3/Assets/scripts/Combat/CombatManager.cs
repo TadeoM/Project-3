@@ -56,7 +56,7 @@ public class CombatManager : MonoBehaviour {
         {
 
             //Start off the max speed as the smallest possible value.
-            int maxSpeed = int.MinValue;
+            double maxSpeed = int.MinValue;
             int creatureIndex = 0;
 
             //Check each creature to see which one has the greatest speed;

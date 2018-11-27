@@ -7,6 +7,7 @@ public class Creature : MonoBehaviour {
     // declare attributes
     public string currentAbilityChoice;
     public Dictionary<string, int> knownAbilities = new Dictionary<string, int>(); // the string contains the name, and the int is in what 'phase' the creature can use the ability
+    public Dictionary<string, double[]> statusEffects; // key is the stat being affected, first double is for how much the stat is affected by, and the second double is for how long
     public SpellManager spellManager;
     public GameObject currentTarget;
     public Stats stats;
@@ -26,9 +27,11 @@ public class Creature : MonoBehaviour {
     }
 
     // properties
-    public float Attack { get; set; }
-    public float Defense { get; set; }
-    public int Speed { get; set; }
+    public double Attack { get; set; }
+    public double Magic { get; set; }
+    public double Resistance { get; set; }
+    public double Defense { get; set; }
+    public double Speed { get; set; }
     private string[] abilities;
 
     // full properties
@@ -86,6 +89,13 @@ public class Creature : MonoBehaviour {
             {
                 level++;
                 nextLevelXP += 100;
+                maxHealth = (int)(MaxHealth * level) / 2;
+                maxMana = (int)(maxMana + level);
+                Attack = (int)(Attack * level) / 3;
+                Magic = (int)(Magic * level) / 3;
+                Defense = (int)(Defense * level) / 3;
+                Resistance = (int)(Resistance * level) / 3;
+                Speed = (int)(Speed * level) / 3;
             }
             else
             {
@@ -99,33 +109,18 @@ public class Creature : MonoBehaviour {
     public string SelectAttackChoice()
     {
         //Debug.Log(this.gameObject.name);
-        string[] neededStats = spellManager.abilitiesDictionary[currentAbilityChoice];
-        List<float> stats = new List<float>();
-        for (int i = 0; i < neededStats.Length; i++)
+        int[] neededResource = spellManager.abilitiesDictionary[currentAbilityChoice];
+        if(neededResource[0] > ammo)
         {
-            switch (neededStats[i])
-            {
-                case "damage":
-                    stats.Add(Attack);
-                    break;
-                case "defense":
-                    stats.Add(Defense);
-                    break;
-                case "health":
-                    stats.Add(currentHealth);
-                    break;
-                case "mana":
-                    stats.Add(currentMana);
-                    break;
-                case "speed":
-                    stats.Add(Speed);
-                    break;
-                default:
-                    break;
-            }
+            return "Could not use ability due to not having enough ammo";
+        }
+        else if (neededResource[1] > currentMana)
+        {
+            return "Could not use ability due to not having enough mana";
         }
         
-        return spellManager.CallAbility(currentAbilityChoice, this.gameObject, currentTarget, stats);
+        
+        return spellManager.CallAbility(currentAbilityChoice, this.gameObject, currentTarget);
     }
     virtual public string GetChoice() { return "This is the creature GetChoice"; }
     
@@ -136,5 +131,10 @@ public class Creature : MonoBehaviour {
             return true;
         else
             return false;
+    }
+
+    public void TakeDamage(int damage, string type)
+    {
+        currentHealth -= damage;
     }
 }
