@@ -7,8 +7,11 @@ public class SpellManager : MonoBehaviour {
 
     private void Start()
     {
-        abilitiesDictionary.Add("BasicAttack", new int[2] { 0, 0 });
+        abilitiesDictionary.Add("Attack", new int[2] { 0, 0 });
         abilitiesDictionary.Add("PistolShot", new int[2] { 1, 0 });
+        abilitiesDictionary.Add("Siphon", new int[2] { 0, 0 });
+        abilitiesDictionary.Add("Swipe", new int[2] { 0, 0 });
+
     }
 
     public string CallAbility(string abilityName, GameObject origin, GameObject target)
@@ -24,6 +27,12 @@ public class SpellManager : MonoBehaviour {
                 break;
             case "Attack":
                 whatHappened = Attack(origin, target);
+                break;
+            case "Swipe":
+                whatHappened = Swipe(origin, target);
+                break;
+            case "Siphon":
+                whatHappened = Siphon(origin, target);
                 break;
             default:
                 whatHappened = "Nothing";
@@ -238,6 +247,7 @@ public class SpellManager : MonoBehaviour {
         Creature originStats = origin.GetComponent<Creature>();
         int damage = (int)(originStats.Attack * 15);
         otherStats.TakeDamage(damage, "physical");
+       
         return origin.name + " did " + damage + " phyiscal damage to " + target.name;
     }
 
