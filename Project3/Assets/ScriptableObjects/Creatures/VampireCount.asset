@@ -9,24 +9,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb83c0b283a185241b47dda51ac6f956, type: 3}
-  m_Name: Dresdon
+  m_Name: VampireCount
   m_EditorClassIdentifier: 
-  health: 100
-  mana: 10
-  ammo: 6
-  attack: 5
-  magic: 8
-  defense: 5
-  resistance: 8
-  speed: 5
+  health: 800
+  mana: 30
+  ammo: 0
+  attack: 30
+  magic: 30
+  defense: 20
+  resistance: 25
+  speed: 14
   abilityNames:
-  - Attack
-  - Shoot
-  - Defendarius
-  - Fuego
-  - CircleOfFire
-  - CircleOfIron
-  - EnfAttack
-  - EnfGuard
-  - Fortius
-  phaseUseable: 010000000100000001000000010000000100000001000000010000000100000001000000
+  - Scratch
+  - Devour
+  - Feast
+  phaseUseable: 010000000100000002000000
