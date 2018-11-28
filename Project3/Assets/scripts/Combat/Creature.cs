@@ -108,7 +108,8 @@ public class Creature : MonoBehaviour {
     /// </summary>
     public string SelectAttackChoice()
     {
-        //Debug.Log(this.gameObject.name);
+        //Debug.Log(currentAbilityChoice);
+
         int[] neededResource = spellManager.abilitiesDictionary[currentAbilityChoice];
         if(neededResource[0] > ammo)
         {
