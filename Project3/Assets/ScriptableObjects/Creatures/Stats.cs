@@ -4,15 +4,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Stats", menuName = "Stats", order = 1)]
 public class Stats : ScriptableObject
 {
-    public string name;
     public int health;
     public int mana;
     public int ammo;
-    public float attack;
-    public float magic;
-    public float defense;
-    public float resistance;
-    public float speed;
+    public double attack;
+    public double magic;
+    public double defense;
+    public double resistance;
+    public double speed;
     public List<string> abilityNames;
     public List<int> phaseUseable;
 }
