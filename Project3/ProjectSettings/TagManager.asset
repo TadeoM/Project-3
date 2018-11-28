@@ -12,6 +12,7 @@ TagManager:
   - spellManager
   - player
   - enemy
+  - tile
   layers:
   - Default
   - TransparentFX
