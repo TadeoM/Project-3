@@ -64,9 +64,11 @@ public class Creature : MonoBehaviour {
     {
         spellManager = GameObject.FindGameObjectWithTag("spellManager").GetComponent<SpellManager>();
         nextLevelXP = 100;
+        level = stats.level;
         maxHealth = stats.health;
         maxMana = stats.mana;
         ammo = stats.ammo;
+        Magic = stats.magic;
         Defense = stats.defense;
         Attack = stats.attack;
         Speed = (int)stats.speed;
@@ -76,6 +78,7 @@ public class Creature : MonoBehaviour {
         {
             knownAbilities.Add(ability, 0);
         }
+      
     }
     // continues to add levels until it does not have enough experience to level up again
     public void IncreaseExperience()
@@ -104,7 +107,7 @@ public class Creature : MonoBehaviour {
         }
     }
     /// <summary>
-    /// take thhe current ability choice and pass in the values needed to perform the attack
+    /// take the current ability choice and pass in the values needed to perform the attack
     /// </summary>
     public string SelectAttackChoice()
     {
