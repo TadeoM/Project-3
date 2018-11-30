@@ -9,8 +9,9 @@ public class SpellManager : MonoBehaviour {
     {
         abilitiesDictionary.Add("Attack", new int[2] { 0, 0 });
         abilitiesDictionary.Add("PistolShot", new int[2] { 1, 0 });
-        abilitiesDictionary.Add("Siphon", new int[2] { 0, 0 });
+        abilitiesDictionary.Add("Siphon", new int[2] { 0, 5 });
         abilitiesDictionary.Add("Swipe", new int[2] { 0, 0 });
+        abilitiesDictionary.Add("Screech", new int[2] { 0, 0 });
 
     }
 
@@ -50,7 +51,8 @@ public class SpellManager : MonoBehaviour {
         Creature otherStats = target.GetComponent<Creature>();
         Creature originStats = origin.GetComponent<Creature>();
 
-        int damage = (int)(originStats.Attack * 10);
+        // int damage = (int)(originStats.Attack * 10);
+        int damage = CalcPhsyical(otherStats,originStats);
         otherStats.TakeDamage(damage, "physical");
 
         return origin.name + " did " + damage + " physical damage to " + target.name;
@@ -66,7 +68,8 @@ public class SpellManager : MonoBehaviour {
     {
         Creature otherStats = target.GetComponent<Creature>();
         Creature originStats = origin.GetComponent<Creature>();
-        int damage = (int)(originStats.Attack * 15);
+        int damage = CalcPhsyical(otherStats, originStats);
+
 
         otherStats.TakeDamage(damage, "physical");
         origin.GetComponent<Creature>().Ammo--;
@@ -98,7 +101,8 @@ public class SpellManager : MonoBehaviour {
         Creature otherStats = target.GetComponent<Creature>();
         Creature originStats = origin.GetComponent<Creature>();
 
-        int damage = (int)(originStats.Magic * 20);
+        int damage = CalcMagical(otherStats, originStats);
+
         otherStats.TakeDamage(damage, "magical");
 
         return origin.name + " did " + damage + " magical damage to " + target.name;
@@ -212,7 +216,8 @@ public class SpellManager : MonoBehaviour {
         Creature otherStats = target.GetComponent<Creature>();
         Creature originStats = origin.GetComponent<Creature>();
 
-        int damage = (int)(originStats.Attack * 15);
+        int damage = CalcPhsyical(otherStats, originStats);
+
         otherStats.TakeDamage(damage, "physical");
 
         return origin.name + " did " + damage + " physical damage to " + target.name;
@@ -245,7 +250,8 @@ public class SpellManager : MonoBehaviour {
     {
         Creature otherStats = target.GetComponent<Creature>();
         Creature originStats = origin.GetComponent<Creature>();
-        int damage = (int)(originStats.Attack * 15);
+        int damage = CalcPhsyical(otherStats, originStats);
+
         otherStats.TakeDamage(damage, "physical");
        
         return origin.name + " did " + damage + " phyiscal damage to " + target.name;
@@ -261,10 +267,12 @@ public class SpellManager : MonoBehaviour {
     {
         Creature otherStats = target.GetComponent<Creature>();
         Creature originStats = origin.GetComponent<Creature>();
+        Debug.Log("Ghouls Magic: " + originStats.Magic);
+        int damage = CalcMagical(otherStats, originStats);
 
-        int damage = (int)(originStats.Magic * 15);
         otherStats.TakeDamage(damage, "magical");
         originStats.CurrentMana -= 5;
+        Debug.Log(originStats.CurrentMana);
         originStats.currentHealth += (int)(originStats.MaxHealth * .25);
 
         return origin.name + " did " + damage + " magical damage to " + target.name + " and restored its health";
@@ -299,7 +307,8 @@ public class SpellManager : MonoBehaviour {
         Creature otherStats = target.GetComponent<Creature>();
         Creature originStats = origin.GetComponent<Creature>();
 
-        int damage = (int)(originStats.Attack * 15);
+        int damage = CalcPhsyical(otherStats, originStats);
+
         otherStats.TakeDamage(damage, "physical");
         
         return origin.name + " did " + damage + " phyical damage to " + target.name;
@@ -315,10 +324,11 @@ public class SpellManager : MonoBehaviour {
     {
         Creature otherStats = target.GetComponent<Creature>();
         Creature originStats = origin.GetComponent<Creature>();
-        int damage = (int)(originStats.Attack * 15);
-        otherStats.TakeDamage(damage, "physical");
+        int damage = CalcMagical(otherStats, originStats);
+
+        otherStats.TakeDamage(damage, "magical");
         originStats.CurrentMana -= 5;
-        return origin.name + " did " + damage + " physical damage to " + target.name;
+        return origin.name + " did " + damage + " magical damage to " + target.name;
     }
     /// <summary>
     /// increases caster's attack and magic
@@ -352,7 +362,8 @@ public class SpellManager : MonoBehaviour {
         Creature otherStats = target.GetComponent<Creature>();
         Creature originStats = origin.GetComponent<Creature>();
 
-        int damage = (int)(originStats.Attack * 25);
+        int damage = CalcPhsyical(otherStats, originStats);
+
         otherStats.TakeDamage(damage, "physical");
 
         return origin.name + " did " + damage + " physical damage to " + target.name;
@@ -393,10 +404,27 @@ public class SpellManager : MonoBehaviour {
         Creature otherStats = target.GetComponent<Creature>();
         Creature originStats = origin.GetComponent<Creature>();
 
-        int damage = (int)(originStats.Magic * 30);
+        int damage = CalcMagical(otherStats, originStats);
+
         otherStats.TakeDamage(damage, "magical");
         originStats.currentHealth += (int)(originStats.MaxHealth * 0.3);
         
         return origin.name + " did " + damage + " magical damage to " + target.name + " and healed itself!";
+    }
+
+    public int CalcPhsyical(Creature origin, Creature target)
+    {
+       // Debug.Log("Dresden Level: " + origin.Level);
+       // Debug.Log("Dresden Attack: " + origin.Attack);
+        //Debug.Log("Target Defense: " + target.Defense);
+
+        int damage = (int)(origin.Attack * 10 / (target.Defense * (origin.Level / 2)));
+        
+        return damage;
+    }
+
+    public int CalcMagical(Creature origin, Creature target)
+    {
+        return (int)(origin.Attack * 10 / target.Resistance * (origin.Level / 2)); ;
     }
 }
