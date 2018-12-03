@@ -14,11 +14,13 @@ MonoBehaviour:
   health: 800
   mana: 30
   ammo: 0
+  level: 10
   attack: 30
   magic: 30
   defense: 20
   resistance: 25
   speed: 14
+  experience: 0
   abilityNames:
   - Scratch
   - Devour
