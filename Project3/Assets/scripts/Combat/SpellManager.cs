@@ -51,8 +51,7 @@ public class SpellManager : MonoBehaviour {
         Creature otherStats = target.GetComponent<Creature>();
         Creature originStats = origin.GetComponent<Creature>();
 
-        // int damage = (int)(originStats.Attack * 10);
-        int damage = CalcPhsyical(otherStats,originStats);
+        float damage = CalcPhsyical(otherStats,originStats,10.0f);
         otherStats.TakeDamage(damage, "physical");
 
         return origin.name + " did " + damage + " physical damage to " + target.name;
@@ -68,7 +67,7 @@ public class SpellManager : MonoBehaviour {
     {
         Creature otherStats = target.GetComponent<Creature>();
         Creature originStats = origin.GetComponent<Creature>();
-        int damage = CalcPhsyical(otherStats, originStats);
+        float damage = CalcPhsyical(otherStats, originStats,15.0f);
 
 
         otherStats.TakeDamage(damage, "physical");
@@ -101,7 +100,7 @@ public class SpellManager : MonoBehaviour {
         Creature otherStats = target.GetComponent<Creature>();
         Creature originStats = origin.GetComponent<Creature>();
 
-        int damage = CalcMagical(otherStats, originStats);
+        float damage = CalcMagical(otherStats, originStats,20.0f);
 
         otherStats.TakeDamage(damage, "magical");
 
@@ -120,8 +119,8 @@ public class SpellManager : MonoBehaviour {
         Creature originStats = origin.GetComponent<Creature>();
 
         originStats.CurrentMana -= 3;
-        originStats.Attack *= 1.3;
-        originStats.Magic *= 1.3;
+        originStats.Attack *= 1.3f;
+        originStats.Magic *= 1.3f;
         originStats.statusEffects.Add("attack", new double[2] { 1.3, 2 });
         originStats.statusEffects.Add("magic", new double[2] { 1.3, 2 });
 
@@ -140,8 +139,8 @@ public class SpellManager : MonoBehaviour {
         Creature originStats = origin.GetComponent<Creature>();
 
         originStats.CurrentMana -= 3;
-        originStats.Defense *= 1.3;
-        originStats.Resistance *= 1.3;
+        originStats.Defense *= 1.3f;
+        originStats.Resistance *= 1.3f;
         originStats.statusEffects.Add("defense", new double[2] { 1.3, 2 });
         originStats.statusEffects.Add("resistance", new double[2] { 1.3, 2 });
 
@@ -160,8 +159,8 @@ public class SpellManager : MonoBehaviour {
         Creature originStats = origin.GetComponent<Creature>();
 
         otherStats.CurrentMana -= 3;
-        otherStats.Attack *= 0.7;
-        otherStats.Magic *= 0.7;
+        otherStats.Attack *= 0.7f;
+        otherStats.Magic *= 0.7f;
         otherStats.statusEffects.Add("attack", new double[2] { 0.7, 2 });
         otherStats.statusEffects.Add("magic", new double[2] { 0.7, 2 });
 
@@ -180,8 +179,8 @@ public class SpellManager : MonoBehaviour {
         Creature originStats = origin.GetComponent<Creature>();
 
         otherStats.CurrentMana -= 3;
-        otherStats.Defense *= 0.7;
-        otherStats.Resistance *= 0.7;
+        otherStats.Defense *= 0.7f;
+        otherStats.Resistance *= 0.7f;
         otherStats.statusEffects.Add("defense", new double[2] { 0.7, 2 });
         otherStats.statusEffects.Add("resistance", new double[2] { 0.7, 2 });
 
@@ -216,7 +215,7 @@ public class SpellManager : MonoBehaviour {
         Creature otherStats = target.GetComponent<Creature>();
         Creature originStats = origin.GetComponent<Creature>();
 
-        int damage = CalcPhsyical(otherStats, originStats);
+        float damage = CalcPhsyical(otherStats, originStats,15.0f);
 
         otherStats.TakeDamage(damage, "physical");
 
@@ -234,7 +233,7 @@ public class SpellManager : MonoBehaviour {
         Creature originStats = origin.GetComponent<Creature>();
 
         originStats.CurrentMana -= 5;
-        originStats.Defense *= 1.25;
+        originStats.Defense *= 1.25f;
         originStats.statusEffects.Add("defense", new double[2] { 1.25, 2 });
 
         return origin.name + " increased its defense";
@@ -250,7 +249,7 @@ public class SpellManager : MonoBehaviour {
     {
         Creature otherStats = target.GetComponent<Creature>();
         Creature originStats = origin.GetComponent<Creature>();
-        int damage = CalcPhsyical(otherStats, originStats);
+        float damage = CalcPhsyical(otherStats, originStats,15.0f);
 
         otherStats.TakeDamage(damage, "physical");
        
@@ -267,12 +266,12 @@ public class SpellManager : MonoBehaviour {
     {
         Creature otherStats = target.GetComponent<Creature>();
         Creature originStats = origin.GetComponent<Creature>();
-        Debug.Log("Ghouls Magic: " + originStats.Magic);
-        int damage = CalcMagical(otherStats, originStats);
+        
+        float damage = CalcMagical(otherStats, originStats,15.0f);
 
         otherStats.TakeDamage(damage, "magical");
         originStats.CurrentMana -= 5;
-        Debug.Log(originStats.CurrentMana);
+
         originStats.currentHealth += (int)(originStats.MaxHealth * .25);
 
         return origin.name + " did " + damage + " magical damage to " + target.name + " and restored its health";
@@ -307,7 +306,7 @@ public class SpellManager : MonoBehaviour {
         Creature otherStats = target.GetComponent<Creature>();
         Creature originStats = origin.GetComponent<Creature>();
 
-        int damage = CalcPhsyical(otherStats, originStats);
+        float damage = CalcPhsyical(otherStats, originStats,15.0f);
 
         otherStats.TakeDamage(damage, "physical");
         
@@ -324,7 +323,7 @@ public class SpellManager : MonoBehaviour {
     {
         Creature otherStats = target.GetComponent<Creature>();
         Creature originStats = origin.GetComponent<Creature>();
-        int damage = CalcMagical(otherStats, originStats);
+        float damage = CalcMagical(otherStats, originStats,15.0f);
 
         otherStats.TakeDamage(damage, "magical");
         originStats.CurrentMana -= 5;
@@ -342,8 +341,8 @@ public class SpellManager : MonoBehaviour {
 
         originStats.CurrentMana -= 5;
 
-        originStats.Attack *= 1.25;
-        originStats.Magic *= 1.25;
+        originStats.Attack *= 1.25f;
+        originStats.Magic *= 1.25f;
 
         originStats.statusEffects.Add("attack", new double[2] { 1.25, 2 });
         originStats.statusEffects.Add("magic", new double[2] { 1.25, 2 });
@@ -362,7 +361,7 @@ public class SpellManager : MonoBehaviour {
         Creature otherStats = target.GetComponent<Creature>();
         Creature originStats = origin.GetComponent<Creature>();
 
-        int damage = CalcPhsyical(otherStats, originStats);
+        float damage = CalcPhsyical(otherStats, originStats,25.0f);
 
         otherStats.TakeDamage(damage, "physical");
 
@@ -381,11 +380,11 @@ public class SpellManager : MonoBehaviour {
         Creature originStats = origin.GetComponent<Creature>();
 
         originStats.CurrentMana -= 10;
-        int damage = (int)(originStats.Attack * 15);
+        float damage = (int)(originStats.Attack * 15);
 
         otherStats.TakeDamage(damage, "physical");
-        otherStats.Defense *= 0.7;
-        otherStats.Resistance *= 0.7;
+        otherStats.Defense *= 0.7f;
+        otherStats.Resistance *= 0.7f;
 
         originStats.statusEffects.Add("defense", new double[2] { 0.7, 2 });
         originStats.statusEffects.Add("resistance", new double[2] { 0.7, 2 });
@@ -404,7 +403,7 @@ public class SpellManager : MonoBehaviour {
         Creature otherStats = target.GetComponent<Creature>();
         Creature originStats = origin.GetComponent<Creature>();
 
-        int damage = CalcMagical(otherStats, originStats);
+        float damage = CalcMagical(otherStats, originStats,30.0f);
 
         otherStats.TakeDamage(damage, "magical");
         originStats.currentHealth += (int)(originStats.MaxHealth * 0.3);
@@ -412,19 +411,19 @@ public class SpellManager : MonoBehaviour {
         return origin.name + " did " + damage + " magical damage to " + target.name + " and healed itself!";
     }
 
-    public int CalcPhsyical(Creature origin, Creature target)
-    {
-       // Debug.Log("Dresden Level: " + origin.Level);
-       // Debug.Log("Dresden Attack: " + origin.Attack);
-        //Debug.Log("Target Defense: " + target.Defense);
-
-        int damage = (int)(origin.Attack * 10 / (target.Defense * (origin.Level / 2)));
-        
-        return damage;
+    public float CalcPhsyical(Creature origin, Creature target,float baseDamage)
+    {   
+        return ((origin.Attack * baseDamage) / (target.Defense * (origin.Level / 2.0f)));
     }
 
-    public int CalcMagical(Creature origin, Creature target)
+    public float CalcMagical(Creature origin, Creature target, float baseDamage)
     {
-        return (int)(origin.Attack * 10 / target.Resistance * (origin.Level / 2)); ;
+ 
+        float damage = ((origin.Magic * baseDamage) / (target.Resistance * (origin.Level / 2.0f)));
+
+        Debug.Log(origin);
+        Debug.Log(target);
+
+        return damage;
     }
 }

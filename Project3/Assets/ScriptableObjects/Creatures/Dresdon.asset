@@ -14,11 +14,13 @@ MonoBehaviour:
   health: 100
   mana: 10
   ammo: 6
+  level: 1
   attack: 5
   magic: 8
   defense: 5
   resistance: 8
   speed: 5
+  experience: 0
   abilityNames:
   - Attack
   - Shoot

@@ -27,11 +27,11 @@ public class Creature : MonoBehaviour {
     }
 
     // properties
-    public double Attack { get; set; }
-    public double Magic { get; set; }
-    public double Resistance { get; set; }
-    public double Defense { get; set; }
-    public double Speed { get; set; }
+    public float Attack { get; set; }
+    public float Magic { get; set; }
+    public float Resistance { get; set; }
+    public float Defense { get; set; }
+    public float Speed { get; set; }
     private string[] abilities;
 
     // full properties
@@ -72,6 +72,7 @@ public class Creature : MonoBehaviour {
         Defense = stats.defense;
         Attack = stats.attack;
         Speed = (int)stats.speed;
+        Resistance = stats.resistance;
         currentHealth = MaxHealth;
         currentMana = MaxMana;
         foreach (var ability in stats.abilityNames)
@@ -137,8 +138,9 @@ public class Creature : MonoBehaviour {
             return false;
     }
 
-    public void TakeDamage(int damage, string type)
+    public void TakeDamage(float damage, string type)
     {
-        currentHealth -= damage;
+        Debug.Log("Damage done: " + damage);
+        currentHealth -= Mathf.FloorToInt(damage);
     }
 }

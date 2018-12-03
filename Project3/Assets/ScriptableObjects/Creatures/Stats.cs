@@ -8,12 +8,12 @@ public class Stats : ScriptableObject
     public int mana;
     public int ammo;
     public int level;
-    public double attack;
-    public double magic;
-    public double defense;
-    public double resistance;
-    public double speed;
-    public double experience;
+    public float attack;
+    public float magic;
+    public float defense;
+    public float resistance;
+    public float speed;
+    public float experience;
     public List<string> abilityNames;
     public List<int> phaseUseable;
 }

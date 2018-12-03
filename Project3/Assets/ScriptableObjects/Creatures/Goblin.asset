@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Name: Goblin
   m_EditorClassIdentifier: 
   health: 120
-  mana: 0
+  mana: 5
   ammo: 0
+  level: 1
   attack: 9
-  magic: 0
+  magic: 2
   defense: 8
   resistance: 3
   speed: 3
+  experience: 5
   abilityNames:
   - Slash
   - Fortify
