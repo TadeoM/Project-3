@@ -7,7 +7,7 @@ public class Creature : MonoBehaviour {
     // declare attributes
     public string currentAbilityChoice;
     public Dictionary<string, int> knownAbilities = new Dictionary<string, int>(); // the string contains the name, and the int is in what 'phase' the creature can use the ability
-    public Dictionary<string, double[]> statusEffects; // key is the stat being affected, first double is for how much the stat is affected by, and the second double is for how long
+    public Dictionary<string, double[]> statusEffects = new Dictionary<string, double[]>(); // key is the stat being affected, first double is for how much the stat is affected by, and the second double is for how long
     public SpellManager spellManager;
     public GameObject currentTarget;
     public Stats stats;
