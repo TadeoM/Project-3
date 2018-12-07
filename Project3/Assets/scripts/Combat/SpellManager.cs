@@ -7,11 +7,36 @@ public class SpellManager : MonoBehaviour {
 
     private void Start()
     {
+        //Dresden
         abilitiesDictionary.Add("Attack", new int[2] { 0, 0 });
         abilitiesDictionary.Add("PistolShot", new int[2] { 1, 0 });
+        abilitiesDictionary.Add("Defendarius", new int[2] { 0, 2 });
+        abilitiesDictionary.Add("Fuego", new int[2] { 0, 5 });
+        abilitiesDictionary.Add("CircleOfFire", new int[2] { 0, 3 });
+        abilitiesDictionary.Add("COfIron", new int[2] { 0, 3 });
+        abilitiesDictionary.Add("EnfeebleAttack", new int[2] { 0, 3 });
+        abilitiesDictionary.Add("EnfeebleGuard", new int[2] { 0, 3 });
+        abilitiesDictionary.Add("Fortius", new int[2] { 0, 4 });
+
+        //Ghoul
         abilitiesDictionary.Add("Siphon", new int[2] { 0, 5 });
         abilitiesDictionary.Add("Swipe", new int[2] { 0, 0 });
-        abilitiesDictionary.Add("Screech", new int[2] { 0, 0 });
+        abilitiesDictionary.Add("Screech", new int[2] { 0, 5 });
+
+        //Hellhound
+        abilitiesDictionary.Add("Howl", new int[2] { 0, 5 });
+        abilitiesDictionary.Add("Scorch", new int[2] { 0, 5 });
+        abilitiesDictionary.Add("Bite", new int[2] { 0, 0 });
+
+        //Goblin
+        abilitiesDictionary.Add("Fortify", new int[2] { 0, 5 });
+        abilitiesDictionary.Add("Slash", new int[2] { 0, 0 });
+
+        //Vampire
+        abilitiesDictionary.Add("Scratch", new int[2] { 0, 0 });
+        abilitiesDictionary.Add("Devour", new int[2] { 0, 10 });
+        abilitiesDictionary.Add("Feast", new int[2] { 0, 0 });
+
 
     }
 
@@ -29,11 +54,56 @@ public class SpellManager : MonoBehaviour {
             case "Attack":
                 whatHappened = Attack(origin, target);
                 break;
+            case "Defendarius":
+                whatHappened = Defendarius(origin, target);
+                break;
+            case "CircleOfFire":
+                whatHappened = CircleOfFire(origin, target);
+                break;
+            case "COfIron":
+                whatHappened = COfIron(origin, target);
+                break;
+            case "EnfeebleAttack":
+                whatHappened =EnfeebleAttack(origin, target);
+                break;
+            case "EnfeebleGuard":
+                whatHappened = EnfeebleGuard(origin, target);
+                break;
+            case "Fortius":
+                whatHappened = Fortius(origin, target);
+                break;
             case "Swipe":
                 whatHappened = Swipe(origin, target);
                 break;
             case "Siphon":
                 whatHappened = Siphon(origin, target);
+                break;
+            case "Screech":
+                whatHappened = Screech(origin, target);
+                break;
+            case "Bite":
+                whatHappened = Bite(origin, target);
+                break;
+            case "Scorch":
+                whatHappened = Scorch(origin, target);
+                break;
+            case "Howl":
+                whatHappened = Howl(origin, target);
+                break;
+            case "Slash":
+                whatHappened = Slash(origin, target);
+                break;
+            case "Fortify":
+                whatHappened = Fortify(origin, target);
+                break;
+            case "Feast":
+                whatHappened = Feast(origin, target);
+                break;
+            case "Scratch":
+                whatHappened = Scratch(origin, target);
+                break;
+            case "Devour":
+                whatHappened = Devour(origin, target);
                 break;
             default:
                 whatHappened = "Nothing";
@@ -103,7 +173,7 @@ public class SpellManager : MonoBehaviour {
         float damage = CalcMagical(originStats, otherStats, 20.0f);
 
         otherStats.TakeDamage(damage, "magical");
-
+        origin.GetComponent<Creature>().CurrentMana -= 5;
         return origin.name + " did " + damage + " magical damage to " + target.name;
     }
 
@@ -153,7 +223,7 @@ public class SpellManager : MonoBehaviour {
     /// <param name="origin"></param>
     /// <param name="target"></param>
     /// <returns></returns>
-    public string EnforceAttack(GameObject origin, GameObject target)
+    public string EnfeebleAttack(GameObject origin, GameObject target)
     {
         Creature otherStats = target.GetComponent<Creature>();
         Creature originStats = origin.GetComponent<Creature>();
@@ -173,7 +243,7 @@ public class SpellManager : MonoBehaviour {
     /// <param name="origin"></param>
     /// <param name="target"></param>
     /// <returns></returns>
-    public string EnforceGuard(GameObject origin, GameObject target)
+    public string EnfeebleGuard(GameObject origin, GameObject target)
     {
         Creature otherStats = target.GetComponent<Creature>();
         Creature originStats = origin.GetComponent<Creature>();
