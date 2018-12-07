@@ -20,7 +20,7 @@ MonoBehaviour:
   defense: 3
   resistance: 8
   speed: 2
-  experience: 5
+  experience: 25
   abilityNames:
   - Swipe
   - Siphon

@@ -13,12 +13,20 @@ public class Creature : MonoBehaviour {
     public Stats stats;
     private int level;
     private int nextLevelXP;
-    private int experience;
     private int maxHealth;
     private int maxMana;
     private int ammo;
     public int currentHealth;
     private int currentMana;
+    private int baseHealth;
+    private int baseMana;
+    private float baseAttack;
+    private float baseMagic;
+    private float baseDefense;
+    private float baseRes;
+    private float baseSpeed;
+    private float experience;
+
 
     public int CurrentMana
     {
@@ -39,7 +47,7 @@ public class Creature : MonoBehaviour {
     {
         get { return level; }
     }
-    public int Experience
+    public float Experience
     {
         get { return experience; }
         set { experience = value; }
@@ -75,6 +83,16 @@ public class Creature : MonoBehaviour {
         Resistance = stats.resistance;
         currentHealth = MaxHealth;
         currentMana = MaxMana;
+        experience = stats.experience;
+
+        baseHealth = stats.health;
+        baseMana = stats.mana;
+        baseAttack = stats.attack;
+        baseDefense = stats.defense;
+        baseRes = stats.resistance;
+        baseMagic = stats.magic;
+        baseSpeed = stats.speed;
+
         foreach (var ability in stats.abilityNames)
         {
             knownAbilities.Add(ability, 0);
@@ -82,28 +100,23 @@ public class Creature : MonoBehaviour {
       
     }
     // continues to add levels until it does not have enough experience to level up again
-    public void IncreaseExperience()
+    public void IncreaseExperience(float xp)
     {
-        
-        bool checkedLevel = false;
-
-        while (checkedLevel)
+        experience += xp;
+        Debug.Log("Dresden gained " + xp + " and his experience is now: " + experience);
+        if (Level != 10)
         {
             if (experience >= nextLevelXP)
             {
                 level++;
                 nextLevelXP += 100;
-                maxHealth = (int)(MaxHealth * level) / 2;
-                maxMana = (int)(maxMana + level);
-                Attack = (int)(Attack * level) / 3;
-                Magic = (int)(Magic * level) / 3;
-                Defense = (int)(Defense * level) / 3;
-                Resistance = (int)(Resistance * level) / 3;
-                Speed = (int)(Speed * level) / 3;
-            }
-            else
-            {
-                checkedLevel = true;
+                maxHealth = (int)(baseHealth * level) / 2;
+                maxMana = (int)(baseMana + level);
+                Attack = (int)(baseAttack * level) / 3;
+                Magic = (int)(baseMagic * level) / 3;
+                Defense = (int)(baseDefense * level) / 3;
+                Resistance = (int)(baseRes * level) / 3;
+                Speed = (int)(baseSpeed * level) / 3;
             }
         }
     }

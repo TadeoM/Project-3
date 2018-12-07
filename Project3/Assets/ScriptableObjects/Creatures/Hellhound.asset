@@ -20,7 +20,7 @@ MonoBehaviour:
   defense: 6
   resistance: 6
   speed: 6
-  experience: 5
+  experience: 45
   abilityNames:
   - Bite
   - Scorch
