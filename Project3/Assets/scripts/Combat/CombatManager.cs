@@ -11,18 +11,22 @@ public class CombatManager : MonoBehaviour {
     Queue<Creature> attackOrder = new Queue<Creature>();
     bool takenTurn;
     string winner;
-
+    float enemyXP;
+    bool finished;
 
 	// Use this for initialization
 	void Start () {
         winner = "nil";
         takenTurn = false;
+        finished = false;
         GameObject dresdon = GameObject.FindGameObjectWithTag("player");
         playerCharacter = GameObject.FindGameObjectWithTag("player").GetComponent<Creature>();
         GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("enemy");
         foreach (var enemy in enemyObjects)
         {
             enemies.Add(enemy.GetComponent<Enemy>());
+            enemyXP = enemy.GetComponent<Creature>().Experience;
+
         }
         DetermineAttackOrder();
     }
@@ -38,6 +42,11 @@ public class CombatManager : MonoBehaviour {
         else if(winner != "nil")
         {
             Debug.Log("The winner of this fight is " + winner);
+            if(winner == "Dresden" && !finished)
+            {
+                playerCharacter.IncreaseExperience(enemyXP);
+            }
+            finished = true;
         }
         
 	}
