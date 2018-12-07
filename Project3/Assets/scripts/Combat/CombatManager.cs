@@ -11,18 +11,22 @@ public class CombatManager : MonoBehaviour {
     Queue<Creature> attackOrder = new Queue<Creature>();
     bool takenTurn;
     string winner;
-
+    float enemyXP;
+    bool finished;
 
 	// Use this for initialization
 	void Start () {
         winner = "nil";
         takenTurn = false;
+        finished = false;
         GameObject dresdon = GameObject.FindGameObjectWithTag("player");
         playerCharacter = GameObject.FindGameObjectWithTag("player").GetComponent<Creature>();
         GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("enemy");
         foreach (var enemy in enemyObjects)
         {
             enemies.Add(enemy.GetComponent<Enemy>());
+            enemyXP = enemy.GetComponent<Creature>().Experience;
+
         }
         DetermineAttackOrder();
     }
@@ -38,6 +42,11 @@ public class CombatManager : MonoBehaviour {
         else if(winner != "nil")
         {
             Debug.Log("The winner of this fight is " + winner);
+            if(winner == "Dresden" && !finished)
+            {
+                playerCharacter.IncreaseExperience(enemyXP);
+            }
+            finished = true;
         }
         
 	}
@@ -56,7 +65,7 @@ public class CombatManager : MonoBehaviour {
         {
 
             //Start off the max speed as the smallest possible value.
-            int maxSpeed = int.MinValue;
+            double maxSpeed = int.MinValue;
             int creatureIndex = 0;
 
             //Check each creature to see which one has the greatest speed;
@@ -103,12 +112,15 @@ public class CombatManager : MonoBehaviour {
         {
             Enemy currentEnemy = attackOrder.Peek().GetComponent<Enemy>();
             currentEnemy.GetChoice();
-            currentEnemy.SelectAttackChoice();
+            string whatHappened = currentEnemy.SelectAttackChoice();
+            Debug.Log(whatHappened);
             takenTurn = true;
         }
         else if (attackOrder.Peek().currentAbilityChoice != "")
         {
-            attackOrder.Peek().SelectAttackChoice();
+            string whatHappened = attackOrder.Peek().SelectAttackChoice();
+            attackOrder.Peek().currentAbilityChoice = "";
+            Debug.Log(whatHappened);
             takenTurn = true;
         }
         if (attackOrder.Peek().currentTarget.GetComponent<Creature>().CheckDeath())

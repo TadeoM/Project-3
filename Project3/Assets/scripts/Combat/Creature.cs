@@ -7,17 +7,28 @@ public class Creature : MonoBehaviour {
     // declare attributes
     public string currentAbilityChoice;
     public Dictionary<string, int> knownAbilities = new Dictionary<string, int>(); // the string contains the name, and the int is in what 'phase' the creature can use the ability
+    public Dictionary<string, double[]> statusEffects; // key is the stat being affected, first double is for how much the stat is affected by, and the second double is for how long
     public SpellManager spellManager;
     public GameObject currentTarget;
+    public Animator animator;
     public Stats stats;
+    public string newAnimation;
     private int level;
     private int nextLevelXP;
-    private int experience;
     private int maxHealth;
     private int maxMana;
     private int ammo;
     public int currentHealth;
     private int currentMana;
+    private int baseHealth;
+    private int baseMana;
+    private float baseAttack;
+    private float baseMagic;
+    private float baseDefense;
+    private float baseRes;
+    private float baseSpeed;
+    private float experience;
+
 
     public int CurrentMana
     {
@@ -27,8 +38,10 @@ public class Creature : MonoBehaviour {
 
     // properties
     public float Attack { get; set; }
+    public float Magic { get; set; }
+    public float Resistance { get; set; }
     public float Defense { get; set; }
-    public int Speed { get; set; }
+    public float Speed { get; set; }
     private string[] abilities;
 
     // full properties
@@ -36,7 +49,7 @@ public class Creature : MonoBehaviour {
     {
         get { return level; }
     }
-    public int Experience
+    public float Experience
     {
         get { return experience; }
         set { experience = value; }
@@ -61,78 +74,88 @@ public class Creature : MonoBehaviour {
     {
         spellManager = GameObject.FindGameObjectWithTag("spellManager").GetComponent<SpellManager>();
         nextLevelXP = 100;
+        level = stats.level;
         maxHealth = stats.health;
         maxMana = stats.mana;
         ammo = stats.ammo;
+        Magic = stats.magic;
         Defense = stats.defense;
         Attack = stats.attack;
         Speed = (int)stats.speed;
+        Resistance = stats.resistance;
         currentHealth = MaxHealth;
         currentMana = MaxMana;
+        experience = stats.experience;
+
+        baseHealth = stats.health;
+        baseMana = stats.mana;
+        baseAttack = stats.attack;
+        baseDefense = stats.defense;
+        baseRes = stats.resistance;
+        baseMagic = stats.magic;
+        baseSpeed = stats.speed;
+
         foreach (var ability in stats.abilityNames)
         {
             knownAbilities.Add(ability, 0);
         }
+        newAnimation = "idle";
     }
     // continues to add levels until it does not have enough experience to level up again
-    public void IncreaseExperience()
+    public void IncreaseExperience(float xp)
     {
-        
-        bool checkedLevel = false;
-
-        while (checkedLevel)
+        experience += xp;
+        Debug.Log("Dresden gained " + xp + " and his experience is now: " + experience);
+        if (Level != 10)
         {
             if (experience >= nextLevelXP)
             {
                 level++;
                 nextLevelXP += 100;
-            }
-            else
-            {
-                checkedLevel = true;
+                maxHealth = (int)(baseHealth * level) / 2;
+                maxMana = (int)(baseMana + level);
+                Attack = (int)(baseAttack * level) / 3;
+                Magic = (int)(baseMagic * level) / 3;
+                Defense = (int)(baseDefense * level) / 3;
+                Resistance = (int)(baseRes * level) / 3;
+                Speed = (int)(baseSpeed * level) / 3;
             }
         }
     }
     /// <summary>
-    /// take thhe current ability choice and pass in the values needed to perform the attack
+    /// take the current ability choice and pass in the values needed to perform the attack
     /// </summary>
     public string SelectAttackChoice()
     {
-        Debug.Log(this.gameObject.name);
-        string[] neededStats = spellManager.abilitiesDictionary[currentAbilityChoice];
-        List<float> stats = new List<float>();
-        for (int i = 0; i < neededStats.Length; i++)
+        //Debug.Log(currentAbilityChoice);
+
+        int[] neededResource = spellManager.abilitiesDictionary[currentAbilityChoice];
+        if(neededResource[0] > ammo)
         {
-            switch (neededStats[i])
-            {
-                case "damage":
-                    stats.Add(Attack);
-                    break;
-                case "defense":
-                    stats.Add(Defense);
-                    break;
-                case "health":
-                    stats.Add(currentHealth);
-                    break;
-                case "mana":
-                    stats.Add(currentMana);
-                    break;
-                case "speed":
-                    stats.Add(Speed);
-                    break;
-                default:
-                    break;
-            }
+            return "Could not use ability due to not having enough ammo";
         }
-        return spellManager.CallAbility(currentAbilityChoice, this.gameObject, currentTarget, stats);
+        else if (neededResource[1] > currentMana)
+        {
+            return "Could not use ability due to not having enough mana";
+        }
+        
+        
+        return spellManager.CallAbility(currentAbilityChoice, this.gameObject, currentTarget);
     }
     virtual public string GetChoice() { return "This is the creature GetChoice"; }
     
     public bool CheckDeath()
     {
+        Debug.Log(this.gameObject.name + "  CURRENT HEALTH IS " + currentHealth);
         if (currentHealth <= 0)
             return true;
         else
             return false;
+    }
+
+    public void TakeDamage(float damage, string type)
+    {
+        Debug.Log("Damage done: " + damage);
+        currentHealth -= Mathf.FloorToInt(damage);
     }
 }
