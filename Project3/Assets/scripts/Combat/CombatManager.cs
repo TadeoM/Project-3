@@ -13,9 +13,12 @@ public class CombatManager : MonoBehaviour {
     string winner;
     float enemyXP;
     bool finished;
+<<<<<<< HEAD
     /// <summary>
     /// I need to implement a timer so that I can give each character time to do their animation and have enemy react
     /// </summary>
+=======
+>>>>>>> master
 
 	// Use this for initialization
 	void Start () {
