@@ -32,6 +32,11 @@ public class Enemy : Creature {
     private void Update()
     {
         ChangePhase();
+        if(newAnimation != currentAbilityChoice)
+        {
+            ChangeAnimation();
+        }
+
     }
 
     /// <summary>
@@ -48,5 +53,11 @@ public class Enemy : Creature {
             GetChoice();
         }
         return currentAbilityChoice;
+    }
+
+    public void ChangeAnimation()
+    {
+        newAnimation = currentAbilityChoice;
+        
     }
 }

@@ -7,10 +7,12 @@ public class Creature : MonoBehaviour {
     // declare attributes
     public string currentAbilityChoice;
     public Dictionary<string, int> knownAbilities = new Dictionary<string, int>(); // the string contains the name, and the int is in what 'phase' the creature can use the ability
-    public Dictionary<string, double[]> statusEffects = new Dictionary<string, double[]>(); // key is the stat being affected, first double is for how much the stat is affected by, and the second double is for how long
+    public Dictionary<string, double[]> statusEffects; // key is the stat being affected, first double is for how much the stat is affected by, and the second double is for how long
     public SpellManager spellManager;
     public GameObject currentTarget;
+    public Animator animator;
     public Stats stats;
+    public string newAnimation;
     private int level;
     private int nextLevelXP;
     private int maxHealth;
@@ -97,7 +99,7 @@ public class Creature : MonoBehaviour {
         {
             knownAbilities.Add(ability, 0);
         }
-      
+        newAnimation = "idle";
     }
     // continues to add levels until it does not have enough experience to level up again
     public void IncreaseExperience(float xp)
