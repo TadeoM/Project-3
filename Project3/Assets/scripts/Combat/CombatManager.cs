@@ -33,7 +33,7 @@ public class CombatManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(playerCharacter.knownAbilities);
+        //Debug.Log(attackOrder.Peek());
         
         if(attackOrder.Peek() != null)
         {
@@ -107,18 +107,22 @@ public class CombatManager : MonoBehaviour {
 
     void CalculateTurn()
     {
+        
         //Get the creature's move
         if (attackOrder.Peek().gameObject.tag == "enemy")
         {
             Enemy currentEnemy = attackOrder.Peek().GetComponent<Enemy>();
             currentEnemy.GetChoice();
             string whatHappened = currentEnemy.SelectAttackChoice();
+
             Debug.Log(whatHappened);
             takenTurn = true;
         }
         else if (attackOrder.Peek().currentAbilityChoice != "")
         {
             string whatHappened = attackOrder.Peek().SelectAttackChoice();
+            if (whatHappened == "Could not use ability due to not having enough mana" || whatHappened == "Could not use ability due to not having enough ammo")
+                return;
             attackOrder.Peek().currentAbilityChoice = "";
             Debug.Log(whatHappened);
             takenTurn = true;
@@ -128,8 +132,6 @@ public class CombatManager : MonoBehaviour {
             Destroy(attackOrder.Peek().currentTarget);
             winner = attackOrder.Peek().gameObject.name;
         }
-        //Display the results of the move
-
 
         //Move to the next character
         if (takenTurn)
