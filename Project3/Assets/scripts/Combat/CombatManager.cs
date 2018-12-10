@@ -13,6 +13,7 @@ public class CombatManager : MonoBehaviour {
     string winner;
     float enemyXP;
     bool finished;
+    int timer;
     /// <summary>
     /// I need to implement a timer so that I can give each character time to do their animation and have enemy react
     /// </summary>
@@ -37,8 +38,24 @@ public class CombatManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         Debug.Log(playerCharacter.knownAbilities);
-        
-        if(attackOrder.Peek() != null)
+        //Move to the next character
+        if(takenTurn)
+        {
+            timer = 60;
+            attackOrder.Peek().currentAnimation = 1;
+            
+        }
+        if(takenTurn && (timer <= 30 && timer > 0))
+        {
+            attackOrder.Peek().currentTarget.GetComponent<Creature>().currentAnimation = 2;
+        }
+        else if (takenTurn && timer <= 0)
+        {
+            // we will progress turn and update the health and mana of everything after the timer
+
+            ProgressTurnOrder();
+        }
+        if (attackOrder.Peek() != null)
         {
             CalculateTurn();
         }
@@ -51,7 +68,6 @@ public class CombatManager : MonoBehaviour {
             }
             finished = true;
         }
-        
 	}
 
     void DetermineAttackOrder()
@@ -132,11 +148,6 @@ public class CombatManager : MonoBehaviour {
             winner = attackOrder.Peek().gameObject.name;
         }
         //Display the results of the move
-
-
-        //Move to the next character
-        if (takenTurn)
-            ProgressTurnOrder();
     }
 
     public void ChangeChoice(string name)

@@ -29,10 +29,11 @@ public class Enemy : Creature {
         }
     }
 
-    private void Update()
+    override public  void Update()
     {
+        base.Update();
         ChangePhase();
-        if(newAnimation != currentAbilityChoice)
+        if(newAbility != currentAbilityChoice)
         {
             ChangeAnimation();
         }
@@ -57,7 +58,7 @@ public class Enemy : Creature {
 
     public void ChangeAnimation()
     {
-        newAnimation = currentAbilityChoice;
+        newAbility = currentAbilityChoice;
         
     }
 }
