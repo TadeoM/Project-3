@@ -17,7 +17,7 @@ public class Creature : MonoBehaviour {
     private int maxMana;
     private int ammo;
     public int currentHealth;
-    private int currentMana;
+    public int currentMana;
     private int baseHealth;
     private int baseMana;
     private float baseAttack;
@@ -126,7 +126,6 @@ public class Creature : MonoBehaviour {
     public string SelectAttackChoice()
     {
         //Debug.Log(currentAbilityChoice);
-
         int[] neededResource = spellManager.abilitiesDictionary[currentAbilityChoice];
         if(neededResource[0] > ammo)
         {

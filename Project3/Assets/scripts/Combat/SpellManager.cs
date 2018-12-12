@@ -11,7 +11,7 @@ public class SpellManager : MonoBehaviour {
         abilitiesDictionary.Add("Attack", new int[2] { 0, 0 });
         abilitiesDictionary.Add("PistolShot", new int[2] { 1, 0 });
         abilitiesDictionary.Add("Defendarius", new int[2] { 0, 2 });
-        abilitiesDictionary.Add("Fuego", new int[2] { 0, 5 });
+        abilitiesDictionary.Add("Fuego", new int[2] { 0, 3 });
         abilitiesDictionary.Add("CircleOfFire", new int[2] { 0, 3 });
         abilitiesDictionary.Add("COfIron", new int[2] { 0, 3 });
         abilitiesDictionary.Add("EnfeebleAttack", new int[2] { 0, 3 });
