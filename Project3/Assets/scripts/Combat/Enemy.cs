@@ -29,8 +29,9 @@ public class Enemy : Creature {
         }
     }
 
-    private void Update()
+    override public void Update()
     {
+        base.Update();
         ChangePhase();
     }
 

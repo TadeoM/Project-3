@@ -13,9 +13,10 @@ public class CombatManager : MonoBehaviour {
     string winner;
     float enemyXP;
     bool finished;
+    float timer;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         winner = "nil";
         takenTurn = false;
         finished = false;
@@ -34,8 +35,21 @@ public class CombatManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //Debug.Log(attackOrder.Peek());
-        
-        if(attackOrder.Peek() != null)
+        if (takenTurn)
+        {
+            attackOrder.Peek().currentAnimation = 1;
+        }
+        if (takenTurn && (timer <= timer / 2 && timer > 0))
+        {
+            attackOrder.Peek().currentTarget.GetComponent<Creature>().currentAnimation = 2;
+        }
+        else if (takenTurn && timer <= 0)
+        {
+            // we will progress turn and update the health and mana of everything after the timer
+
+            ProgressTurnOrder();
+        }
+        if (attackOrder.Peek() != null && !takenTurn)
         {
             CalculateTurn();
         }
@@ -48,8 +62,12 @@ public class CombatManager : MonoBehaviour {
             }
             finished = true;
         }
-        
-	}
+        //Debug.Log(timer);
+        if(timer > 0)
+        {
+            timer -= (1 % Time.deltaTime);
+        }
+    }
 
     void DetermineAttackOrder()
     {
@@ -98,6 +116,7 @@ public class CombatManager : MonoBehaviour {
     void ProgressTurnOrder()
     {
         takenTurn = false;
+        attackOrder.Peek().currentAnimation = 0;
         //Take the top element of the attack order and move it to the bottom of the queue.
         attackOrder.Enqueue(attackOrder.Peek());
 
@@ -114,9 +133,9 @@ public class CombatManager : MonoBehaviour {
             Enemy currentEnemy = attackOrder.Peek().GetComponent<Enemy>();
             currentEnemy.GetChoice();
             string whatHappened = currentEnemy.SelectAttackChoice();
-
             Debug.Log(whatHappened);
             takenTurn = true;
+            timer = 2;
         }
         else if (attackOrder.Peek().currentAbilityChoice != "")
         {
@@ -126,6 +145,7 @@ public class CombatManager : MonoBehaviour {
             attackOrder.Peek().currentAbilityChoice = "";
             Debug.Log(whatHappened);
             takenTurn = true;
+            timer = 2;
         }
         if (attackOrder.Peek().currentTarget.GetComponent<Creature>().CheckDeath())
         {
@@ -134,8 +154,8 @@ public class CombatManager : MonoBehaviour {
         }
 
         //Move to the next character
-        if (takenTurn)
-            ProgressTurnOrder();
+       // if (takenTurn)
+            //ProgressTurnOrder();
     }
 
     public void ChangeChoice(string name)

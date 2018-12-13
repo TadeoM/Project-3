@@ -11,6 +11,8 @@ public class Creature : MonoBehaviour {
     public SpellManager spellManager;
     public GameObject currentTarget;
     public Stats stats;
+    public Animator animator;
+    public int currentAnimation; // 0 = idle, 1 = attack, 2 = damaged
     private int level;
     private int nextLevelXP;
     private int maxHealth;
@@ -26,6 +28,7 @@ public class Creature : MonoBehaviour {
     private float baseRes;
     private float baseSpeed;
     private float experience;
+    public int previousAnimation;
 
 
     public int CurrentMana
@@ -97,8 +100,21 @@ public class Creature : MonoBehaviour {
         {
             knownAbilities.Add(ability, 0);
         }
-      
+        currentAnimation = 0;
+        previousAnimation = 0;
     }
+
+    virtual public void Update()
+    {
+        //Debug.Log("THIS: " + this.name + "\nPrevious: " + previousAnimation + "    Current: " + currentAnimation);
+        if (previousAnimation != currentAnimation)
+        {
+            animator.SetInteger("animation", currentAnimation);
+            previousAnimation = currentAnimation;
+        }
+
+    }
+
     // continues to add levels until it does not have enough experience to level up again
     public void IncreaseExperience(float xp)
     {
@@ -125,7 +141,7 @@ public class Creature : MonoBehaviour {
     /// </summary>
     public string SelectAttackChoice()
     {
-        //Debug.Log(currentAbilityChoice);
+        Debug.Log(currentAbilityChoice);
         int[] neededResource = spellManager.abilitiesDictionary[currentAbilityChoice];
         if(neededResource[0] > ammo)
         {
@@ -135,8 +151,8 @@ public class Creature : MonoBehaviour {
         {
             return "Could not use ability due to not having enough mana";
         }
-        
-        
+
+        currentAnimation = 1;
         return spellManager.CallAbility(currentAbilityChoice, this.gameObject, currentTarget);
     }
     virtual public string GetChoice() { return "This is the creature GetChoice"; }
@@ -152,7 +168,7 @@ public class Creature : MonoBehaviour {
 
     public void TakeDamage(float damage, string type)
     {
-        Debug.Log("Damage done: " + damage);
+        //Debug.Log("Damage done: " + damage);
         currentHealth -= Mathf.FloorToInt(damage);
     }
 }
