@@ -22,11 +22,11 @@ public class CombatManager : MonoBehaviour {
         GameObject dresdon = GameObject.FindGameObjectWithTag("player");
         playerCharacter = GameObject.FindGameObjectWithTag("player").GetComponent<Creature>();
         GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("enemy");
+        
         foreach (var enemy in enemyObjects)
         {
             enemies.Add(enemy.GetComponent<Enemy>());
             enemyXP = enemy.GetComponent<Creature>().Experience;
-
         }
         DetermineAttackOrder();
     }
