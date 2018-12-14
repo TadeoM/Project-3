@@ -13,7 +13,15 @@ public class CombatManager : MonoBehaviour {
     string winner;
     float enemyXP;
     bool finished;
+    bool middleSet;
+    float OGTimer;
     float timer;
+    float fPercentage;
+    float distanceBetween; // will be the distance between each position in the grid.
+    float startTime;
+    float middleTime;
+    float speed;
+    float journeyLength;
 
     // Use this for initialization
     void Start () {
@@ -30,23 +38,50 @@ public class CombatManager : MonoBehaviour {
 
         }
         DetermineAttackOrder();
+        speed = 1.0f;
+        distanceBetween = 0.6f;
     }
 	
 	// Update is called once per frame
 	void Update () {
+        Debug.Log(timer);
         //Debug.Log(attackOrder.Peek());
-        if (takenTurn)
+        if (takenTurn && timer > timer / 2)
         {
-            attackOrder.Peek().currentAnimation = 1;
+            // Distance moved = time * speed.
+            float distCovered = (Time.time - startTime) * speed;
+
+            // Fraction of journey completed = current distance divided by total distance.
+            float fracJourney = distCovered / journeyLength;
+
+            // Set our position as a fraction of the distance between the markers.
+            attackOrder.Peek().transform.position = Vector3.Lerp(attackOrder.Peek().startPos, attackOrder.Peek().endPos, fracJourney);
+            
         }
-        if (takenTurn && (timer <= timer / 2 && timer > 0))
+        if (takenTurn && (timer <= OGTimer * 0.4f && timer > 0))
         {
-            attackOrder.Peek().currentTarget.GetComponent<Creature>().currentAnimation = 2;
+            if(!middleSet)
+            {
+                middleTime = Time.time;
+                middleSet = true;
+                attackOrder.Peek().currentTarget.GetComponent<Creature>().ChangeAnimation(2);
+            }
+            attackOrder.Peek().currentTarget.GetComponent<Creature>().ChangeAnimation(0);
+            attackOrder.Peek().ChangeAnimation(1);
+
+            // Distance moved = time * speed.
+            float distCovered = (Time.time - middleTime) * speed;
+
+            // Fraction of journey completed = current distance divided by total distance.
+            float fracJourney = distCovered / journeyLength;
+
+            // Set our position as a fraction of the distance between the markers.
+            attackOrder.Peek().transform.position = Vector3.Lerp(attackOrder.Peek().endPos, attackOrder.Peek().startPos, fracJourney);
         }
         else if (takenTurn && timer <= 0)
         {
             // we will progress turn and update the health and mana of everything after the timer
-
+            Debug.Log("DID THIS THING");
             ProgressTurnOrder();
         }
         if (attackOrder.Peek() != null && !takenTurn)
@@ -89,7 +124,6 @@ public class CombatManager : MonoBehaviour {
             //Check each creature to see which one has the greatest speed;
             for (int i = 0; i < allCreatures.Count; i++)
             {
-
                 //If the current creature's speed is greater than the max speed;
                 if (allCreatures[i].Speed>maxSpeed)
                 {
@@ -116,7 +150,8 @@ public class CombatManager : MonoBehaviour {
     void ProgressTurnOrder()
     {
         takenTurn = false;
-        attackOrder.Peek().currentAnimation = 0;
+        attackOrder.Peek().ChangeAnimation(0);
+        attackOrder.Peek().currentTarget.GetComponent<Creature>().ChangeAnimation(0);
         //Take the top element of the attack order and move it to the bottom of the queue.
         attackOrder.Enqueue(attackOrder.Peek());
 
@@ -126,7 +161,6 @@ public class CombatManager : MonoBehaviour {
 
     void CalculateTurn()
     {
-        
         //Get the creature's move
         if (attackOrder.Peek().gameObject.tag == "enemy")
         {
@@ -135,17 +169,33 @@ public class CombatManager : MonoBehaviour {
             string whatHappened = currentEnemy.SelectAttackChoice();
             Debug.Log(whatHappened);
             takenTurn = true;
-            timer = 2;
+            middleSet = false;
+            OGTimer = timer = 1.2f;
+            startTime = Time.time;
+            currentEnemy.startPos = currentEnemy.transform.position;
+            currentEnemy.endPos = currentEnemy.startPos + (Vector3.Normalize(currentEnemy.currentTarget.transform.position - currentEnemy.startPos) * distanceBetween);
+            journeyLength = Vector3.Distance(attackOrder.Peek().startPos, attackOrder.Peek().endPos);
+            currentEnemy.ChangeAnimation(1);
         }
         else if (attackOrder.Peek().currentAbilityChoice != "")
         {
-            string whatHappened = attackOrder.Peek().SelectAttackChoice();
+            Creature dresdon = attackOrder.Peek();
+            string whatHappened = dresdon.SelectAttackChoice();
             if (whatHappened == "Could not use ability due to not having enough mana" || whatHappened == "Could not use ability due to not having enough ammo")
                 return;
-            attackOrder.Peek().currentAbilityChoice = "";
+            dresdon.currentAbilityChoice = "";
             Debug.Log(whatHappened);
             takenTurn = true;
-            timer = 2;
+            middleSet = false;
+            OGTimer = timer = 1.3f;
+            startTime = Time.time;
+            dresdon.startPos = dresdon.transform.position;
+            
+            dresdon.endPos = dresdon.startPos + (Vector3.Normalize(dresdon.currentTarget.transform.position - dresdon.startPos) * distanceBetween);
+            Debug.Log(dresdon.endPos);
+            journeyLength = Vector3.Distance(dresdon.startPos, dresdon.endPos);
+            dresdon.currentAnimation = 1;
+            dresdon.ChangeAnimation(1);
         }
         if (attackOrder.Peek().currentTarget.GetComponent<Creature>().CheckDeath())
         {

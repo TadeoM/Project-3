@@ -13,6 +13,8 @@ public class Creature : MonoBehaviour {
     public Stats stats;
     public Animator animator;
     public int currentAnimation; // 0 = idle, 1 = attack, 2 = damaged
+    public Vector3 startPos;
+    public Vector3 endPos; 
     private int level;
     private int nextLevelXP;
     private int maxHealth;
@@ -106,13 +108,6 @@ public class Creature : MonoBehaviour {
 
     virtual public void Update()
     {
-        //Debug.Log("THIS: " + this.name + "\nPrevious: " + previousAnimation + "    Current: " + currentAnimation);
-        if (previousAnimation != currentAnimation)
-        {
-            animator.SetInteger("animation", currentAnimation);
-            previousAnimation = currentAnimation;
-        }
-
     }
 
     // continues to add levels until it does not have enough experience to level up again
@@ -159,7 +154,7 @@ public class Creature : MonoBehaviour {
     
     public bool CheckDeath()
     {
-        Debug.Log(this.gameObject.name + "  CURRENT HEALTH IS " + currentHealth);
+        //Debug.Log(this.gameObject.name + "  CURRENT HEALTH IS " + currentHealth);
         if (currentHealth <= 0)
             return true;
         else
@@ -170,5 +165,11 @@ public class Creature : MonoBehaviour {
     {
         //Debug.Log("Damage done: " + damage);
         currentHealth -= Mathf.FloorToInt(damage);
+    }
+    
+    public void ChangeAnimation(int anim)
+    {
+        animator.SetInteger("animation", anim);
+        previousAnimation = anim;
     }
 }
