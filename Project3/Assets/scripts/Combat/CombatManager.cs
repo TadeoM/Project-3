@@ -12,7 +12,6 @@ public class CombatManager : MonoBehaviour {
     public bool takenTurn;
     public string winner;
     float enemyXP;
-    bool finished;
     bool middleSet;
     float OGTimer;
     float timer;
