@@ -191,6 +191,7 @@ public class CombatManager : MonoBehaviour {
             startTime = Time.time;
             currentEnemy.startPos = currentEnemy.transform.position;
             currentEnemy.endPos = currentEnemy.startPos + (Vector3.Normalize(currentEnemy.currentTarget.transform.position - currentEnemy.startPos) * distanceBetween);
+            currentEnemy.endPos.y = currentEnemy.transform.position.y;
             journeyLength = Vector3.Distance(attackOrder.Peek().startPos, attackOrder.Peek().endPos);
             currentEnemy.ChangeAnimation(1);
         }
@@ -209,6 +210,7 @@ public class CombatManager : MonoBehaviour {
             dresdon.startPos = dresdon.transform.position;
             
             dresdon.endPos = dresdon.startPos + (Vector3.Normalize(dresdon.currentTarget.transform.position - dresdon.startPos) * distanceBetween);
+            dresdon.endPos.y = dresdon.transform.position.y;
             Debug.Log(dresdon.endPos);
             journeyLength = Vector3.Distance(dresdon.startPos, dresdon.endPos);
             //dresdon.ChangeAnimation(1);
