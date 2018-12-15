@@ -12,12 +12,15 @@ public class CombatSwitch : MonoBehaviour {
     public GameObject combatUI;
     public bool inCombat;
     public GameObject currentEnemy;
+    public GameObject ghoulPrefab;
+    public GameObject goblinPrefab;
+    public GameObject houndPrefab;
 
 	// Use this for initialization
 	void Start ()
     {
         inCombat = false;
-        GameObject[] allEnemies = GameObject.FindGameObjectsWithTag("enemy"); ;
+        GameObject[] allEnemies = GameObject.FindGameObjectsWithTag("enemy");
 
         foreach (var enemy in allEnemies)
         {
@@ -84,6 +87,23 @@ public class CombatSwitch : MonoBehaviour {
                 }
             }
             enemies.Remove(currentEnemy);
+
+            int rand = Random.Range(0, 2);
+            if (rand == 0)
+            {
+                Vector3 position = new Vector3((float)Random.Range(-6, 17) + 0.5f, 1.4f, (float)Random.Range(18, 21));
+                Instantiate(ghoulPrefab, position, Quaternion.identity);
+            }
+            else if (rand == 1)
+            {
+                Vector3 position = new Vector3((float)Random.Range(-6, 17) + 0.5f, 1.4f, (float)Random.Range(18, 21));
+                Instantiate(goblinPrefab, position, Quaternion.identity);
+            }
+            else
+            {
+                Vector3 position = new Vector3((float)Random.Range(-6, 17) + 0.5f, 1.4f, (float)Random.Range(18, 21));
+                Instantiate(houndPrefab, position, Quaternion.identity);
+            }
         }
 
     }
