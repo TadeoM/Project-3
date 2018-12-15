@@ -37,6 +37,11 @@ public class TurnManager : MonoBehaviour
 
     public static void StartTurn()
     {
+        if (turnTeam.Peek() == null)
+        {
+            turnTeam.Dequeue();
+            StartTurn();
+        }
         if (turnTeam.Count > 0)
         {
             turnTeam.Peek().BeginTurn();
@@ -80,5 +85,27 @@ public class TurnManager : MonoBehaviour
         }
 
         list.Add(unit);
+    }
+
+    public static void RemoveUnit(TacticsMove unit)
+    {
+        List<TacticsMove> list;
+
+        if (!units.ContainsKey(unit.tag))
+        {
+            list = new List<TacticsMove>();
+            units[unit.tag] = list;
+
+            if (!turnKey.Contains(unit.tag))
+            {
+                turnKey.Enqueue(unit.tag);
+            }
+        }
+        else
+        {
+            list = units[unit.tag];
+        }
+
+        list.Remove(unit);
     }
 }
