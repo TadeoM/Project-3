@@ -9,11 +9,13 @@ public class CombatManager : MonoBehaviour {
     List<Creature> enemies = new List<Creature>();
 
     Queue<Creature> attackOrder = new Queue<Creature>();
-    bool takenTurn;
-    string winner;
+    public bool takenTurn;
+    public string winner;
     float enemyXP;
     public bool finished;
     public GameObject turnManager;
+    public GameObject enemy;
+    public bool firstRound = false;
 
 	// Use this for initialization
 	void Start () {
@@ -22,22 +24,33 @@ public class CombatManager : MonoBehaviour {
         finished = false;
         GameObject dresdon = GameObject.FindGameObjectWithTag("player");
         playerCharacter = GameObject.FindGameObjectWithTag("player").GetComponent<Creature>();
-        GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("enemy");
-        
-        foreach (var enemy in enemyObjects)
-        {
-            enemies.Add(enemy.GetComponent<Enemy>());
-            enemyXP = enemy.GetComponent<Creature>().Experience;
-        }
+        //GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("enemy");
+        enemies.Add(enemy.GetComponent<Creature>());
+        enemyXP = enemy.GetComponent<Creature>().Experience;
+        //foreach (var enemy in enemyObjects)
+        // {
+        //   enemies.Add(enemy.GetComponent<Enemy>());
+        // enemyXP = enemy.GetComponent<Creature>().Experience;
+        // }
         DetermineAttackOrder();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        //Debug.Log(attackOrder.Peek());
-        
-        if(attackOrder.Peek() != null)
+        if (firstRound)
         {
+            enemies.Clear();
+            enemies.Add(enemy.GetComponent<Creature>());
+            attackOrder.Clear();
+            
+            DetermineAttackOrder();
+            firstRound = false;
+        }
+
+
+        if (attackOrder.Peek() != null)
+        {
+            
             CalculateTurn();
         }
         else if(winner != "nil")
@@ -56,7 +69,7 @@ public class CombatManager : MonoBehaviour {
     {
         //Create a temporary list to hold all the fighters
         List<Creature> allCreatures = enemies;
-
+        
         //Add dresdon to that list.
         allCreatures.Add(playerCharacter);
    
@@ -90,6 +103,7 @@ public class CombatManager : MonoBehaviour {
             //it isn't checked twice.
             allCreatures.RemoveAt(creatureIndex);
         }
+       
         
     }
 

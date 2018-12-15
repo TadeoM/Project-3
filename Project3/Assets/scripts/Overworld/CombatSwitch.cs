@@ -5,26 +5,33 @@ using UnityEngine;
 public class CombatSwitch : MonoBehaviour {
 
     public GameObject player;
-    public GameObject[] enemies;
+    public List<GameObject> enemies = new List<GameObject>();
     public GameObject combatCamera;
     public GameObject mainCamera;
     public GameObject combatManager;
     public GameObject combatUI;
     public bool inCombat;
+    public GameObject currentEnemy;
 
 	// Use this for initialization
 	void Start ()
     {
         inCombat = false;
-        enemies = GameObject.FindGameObjectsWithTag("enemy");
-	}
-	
-	// Update is called once per frame
-	void Update ()
+        GameObject[] allEnemies = GameObject.FindGameObjectsWithTag("enemy"); ;
+
+        foreach (var enemy in allEnemies)
+        {
+           enemies.Add(enemy);
+        }
+
+    }
+
+    // Update is called once per frame
+    void Update ()
     {
         if (!inCombat)
         {
-            for (int i = 0; i < enemies.Length; i++)
+            for (int i = 0; i < enemies.Count; i++)
             {
                 if (enemies[i] != null)
                 {
@@ -44,6 +51,10 @@ public class CombatSwitch : MonoBehaviour {
                         {
                             e.GetComponent<NPCMove>().enabled = false;
                         }
+                       
+                        combatManager.GetComponent<CombatManager>().enemy = enemies[i];
+                        player.GetComponent<Creature>().currentTarget = enemies[i];
+                        currentEnemy = enemies[i];
                     }
                 }
             }
@@ -52,8 +63,18 @@ public class CombatSwitch : MonoBehaviour {
         {
             combatUI.SetActive(false);
             this.GetComponent<TurnManager>().enabled = true;
+            combatManager.GetComponent<CombatManager>().finished = false;
+            combatManager.GetComponent<CombatManager>().winner = "nil";
+            combatManager.GetComponent<CombatManager>().winner = "nil";
+            combatManager.GetComponent<CombatManager>().takenTurn = false;
             combatManager.GetComponent<CombatManager>().enabled = false;
+            combatManager.GetComponent<CombatManager>().firstRound = true;
+
+
             player.GetComponent<PlayerMove>().enabled = true;
+            player.GetComponent<Creature>().currentHealth = player.GetComponent<Creature>().MaxHealth;
+            player.GetComponent<Creature>().CurrentMana = player.GetComponent<Creature>().MaxMana;
+
             inCombat = false;
             foreach (GameObject e in enemies)
             {
@@ -62,6 +83,7 @@ public class CombatSwitch : MonoBehaviour {
                     e.GetComponent<NPCMove>().enabled = true;
                 }
             }
+            enemies.Remove(currentEnemy);
         }
 
     }
