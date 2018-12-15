@@ -134,7 +134,7 @@ public class Creature : MonoBehaviour {
     /// <summary>
     /// take the current ability choice and pass in the values needed to perform the attack
     /// </summary>
-    public string SelectAttackChoice()
+    virtual public string SelectAttackChoice()
     {
         Debug.Log(currentAbilityChoice);
         int[] neededResource = spellManager.abilitiesDictionary[currentAbilityChoice];

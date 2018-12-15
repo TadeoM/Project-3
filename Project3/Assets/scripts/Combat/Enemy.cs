@@ -55,4 +55,33 @@ public class Enemy : Creature {
         }
         return currentAbilityChoice;
     }
+
+    override public string SelectAttackChoice()
+    {
+
+
+        //switch (currentAbilityChoice)
+        //{
+        //    case "Slash":
+        //    case "Swipe":
+        //    case "Bite":
+        //    case "Scratch":
+        //        ChangeAnimation(1);
+        //        break;
+        //    case "Siphon":
+        //    case "Scortch":
+        //    case "Devour":
+        //        ChangeAnimation(2);
+        //        break;
+        //    case "Feast":
+        //    case "Howl":
+        //    case "Fortify":
+        //    case "Screech":
+        //        ChangeAnimation(3)
+        //        break;
+        //    default:
+        //        break;
+        //}
+        return base.SelectAttackChoice();
+    }
 }

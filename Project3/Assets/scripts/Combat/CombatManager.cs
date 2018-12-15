@@ -38,13 +38,12 @@ public class CombatManager : MonoBehaviour {
 
         }
         DetermineAttackOrder();
-        speed = 1.0f;
+        speed = 1.1f;
         distanceBetween = 0.6f;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(timer);
         //Debug.Log(attackOrder.Peek());
         if (takenTurn && timer > timer / 2)
         {
@@ -170,7 +169,7 @@ public class CombatManager : MonoBehaviour {
             Debug.Log(whatHappened);
             takenTurn = true;
             middleSet = false;
-            OGTimer = timer = 1.2f;
+            OGTimer = timer = 1f;
             startTime = Time.time;
             currentEnemy.startPos = currentEnemy.transform.position;
             currentEnemy.endPos = currentEnemy.startPos + (Vector3.Normalize(currentEnemy.currentTarget.transform.position - currentEnemy.startPos) * distanceBetween);
@@ -187,15 +186,14 @@ public class CombatManager : MonoBehaviour {
             Debug.Log(whatHappened);
             takenTurn = true;
             middleSet = false;
-            OGTimer = timer = 1.3f;
+            OGTimer = timer = 1f;
             startTime = Time.time;
             dresdon.startPos = dresdon.transform.position;
             
             dresdon.endPos = dresdon.startPos + (Vector3.Normalize(dresdon.currentTarget.transform.position - dresdon.startPos) * distanceBetween);
             Debug.Log(dresdon.endPos);
             journeyLength = Vector3.Distance(dresdon.startPos, dresdon.endPos);
-            dresdon.currentAnimation = 1;
-            dresdon.ChangeAnimation(1);
+            //dresdon.ChangeAnimation(1);
         }
         if (attackOrder.Peek().currentTarget.GetComponent<Creature>().CheckDeath())
         {
