@@ -9,6 +9,7 @@ public class Enemy : Creature {
     {
         knownAbilityNames = stats.abilityNames;
         currentTarget = GameObject.FindGameObjectWithTag("player");
+        spellManager = GameObject.FindGameObjectWithTag("spellManager").GetComponent<SpellManager>();
     }
     /// <summary>
     /// changes the stage based on the percentage of health it has

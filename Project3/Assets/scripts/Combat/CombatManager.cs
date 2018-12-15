@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CombatManager : MonoBehaviour {
 
@@ -56,9 +57,13 @@ public class CombatManager : MonoBehaviour {
         else if(winner != "nil")
         {
             Debug.Log("The winner of this fight is " + winner);
-            if(winner == "Dresden" && !finished)
+            if(winner == "Player" && !finished)
             {
                 playerCharacter.IncreaseExperience(enemyXP);
+            }
+            else
+            {
+                SceneManager.LoadScene("title");
             }
             finished = true;
         }
