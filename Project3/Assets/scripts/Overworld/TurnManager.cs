@@ -12,16 +12,16 @@ public class TurnManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        if (turnTeam.Count == 0)
+        {
+            InitTeamTurnQueue();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (turnTeam.Count == 0)
-        {
-            InitTeamTurnQueue();
-        }
+        
     }
 
     static void InitTeamTurnQueue()
@@ -36,15 +36,15 @@ public class TurnManager : MonoBehaviour
     }
 
     public static void StartTurn()
-    {
-        if (turnTeam.Peek() == null)
-        {
-            turnTeam.Dequeue();
-            StartTurn();
-        }
+    {   
         if (turnTeam.Count > 0)
         {
-            turnTeam.Peek().BeginTurn();
+            if (turnTeam.Peek() == null)
+            {
+                EndTurn();
+            }
+            else
+                turnTeam.Peek().BeginTurn();
         }
     }
 
