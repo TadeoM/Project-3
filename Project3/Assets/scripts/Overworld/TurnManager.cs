@@ -5,23 +5,23 @@ using UnityEngine;
 public class TurnManager : MonoBehaviour
 {
 
-    static Dictionary<string, List<TacticsMove>> units = new Dictionary<string, List<TacticsMove>>();
+    public static Dictionary<string, List<TacticsMove>> units = new Dictionary<string, List<TacticsMove>>();
     static Queue<string> turnKey = new Queue<string>();
     static Queue<TacticsMove> turnTeam = new Queue<TacticsMove>();
 
     // Use this for initialization
     void Start()
     {
-
+        if (turnTeam.Count == 0)
+        {
+            InitTeamTurnQueue();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (turnTeam.Count == 0)
-        {
-            InitTeamTurnQueue();
-        }
+        
     }
 
     static void InitTeamTurnQueue()
@@ -36,10 +36,15 @@ public class TurnManager : MonoBehaviour
     }
 
     public static void StartTurn()
-    {
+    {   
         if (turnTeam.Count > 0)
         {
-            turnTeam.Peek().BeginTurn();
+            if (turnTeam.Peek() == null)
+            {
+                EndTurn();
+            }
+            else
+                turnTeam.Peek().BeginTurn();
         }
     }
 
@@ -80,5 +85,27 @@ public class TurnManager : MonoBehaviour
         }
 
         list.Add(unit);
+    }
+
+    public static void RemoveUnit(TacticsMove unit)
+    {
+        List<TacticsMove> list;
+
+        if (!units.ContainsKey(unit.tag))
+        {
+            list = new List<TacticsMove>();
+            units[unit.tag] = list;
+
+            if (!turnKey.Contains(unit.tag))
+            {
+                turnKey.Enqueue(unit.tag);
+            }
+        }
+        else
+        {
+            list = units[unit.tag];
+        }
+
+        list.Remove(unit);
     }
 }

@@ -9,8 +9,8 @@ public class CombatManager : MonoBehaviour {
     List<Creature> enemies = new List<Creature>();
 
     Queue<Creature> attackOrder = new Queue<Creature>();
-    bool takenTurn;
-    string winner;
+    public bool takenTurn;
+    public string winner;
     float enemyXP;
     bool finished;
     bool middleSet;
@@ -22,6 +22,10 @@ public class CombatManager : MonoBehaviour {
     float middleTime;
     float speed;
     float journeyLength;
+    public bool finished;
+    public GameObject turnManager;
+    public GameObject enemy;
+    public bool firstRound = false;
 
     // Use this for initialization
     void Start () {
@@ -30,13 +34,14 @@ public class CombatManager : MonoBehaviour {
         finished = false;
         GameObject dresdon = GameObject.FindGameObjectWithTag("player");
         playerCharacter = GameObject.FindGameObjectWithTag("player").GetComponent<Creature>();
-        GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("enemy");
-        foreach (var enemy in enemyObjects)
-        {
-            enemies.Add(enemy.GetComponent<Enemy>());
-            enemyXP = enemy.GetComponent<Creature>().Experience;
-
-        }
+        //GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("enemy");
+        enemies.Add(enemy.GetComponent<Creature>());
+        enemyXP = enemy.GetComponent<Creature>().Experience;
+        //foreach (var enemy in enemyObjects)
+        // {
+        //   enemies.Add(enemy.GetComponent<Enemy>());
+        // enemyXP = enemy.GetComponent<Creature>().Experience;
+        // }
         DetermineAttackOrder();
         speed = 1.1f;
         distanceBetween = 0.6f;
@@ -44,9 +49,22 @@ public class CombatManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (firstRound)
         //Debug.Log(attackOrder.Peek());
         if (takenTurn && timer > timer / 2)
         {
+            enemies.Clear();
+            enemies.Add(enemy.GetComponent<Creature>());
+            attackOrder.Clear();
+            
+            DetermineAttackOrder();
+            firstRound = false;
+        }
+
+
+        if (attackOrder.Peek() != null)
+        {
+            
             // Distance moved = time * speed.
             float distCovered = (Time.time - startTime) * speed;
 
@@ -107,7 +125,7 @@ public class CombatManager : MonoBehaviour {
     {
         //Create a temporary list to hold all the fighters
         List<Creature> allCreatures = enemies;
-
+        
         //Add dresdon to that list.
         allCreatures.Add(playerCharacter);
    
@@ -140,6 +158,7 @@ public class CombatManager : MonoBehaviour {
             //it isn't checked twice.
             allCreatures.RemoveAt(creatureIndex);
         }
+       
         
     }
 
