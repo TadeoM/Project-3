@@ -8,9 +8,44 @@ public class Dresdon : Creature {
 	void Start () {
         currentTarget = GameObject.FindGameObjectWithTag("enemy");
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    override public string SelectAttackChoice()
+    {
+        base.SelectAttackChoice();
+
+        switch (currentAbilityChoice)
+        {
+            case "Attack":
+                ChangeAnimation(1);
+                break;
+            case "Shoot":
+                ChangeAnimation(2);
+                break;
+            case "Defendarius":
+                ChangeAnimation(3);
+                break;
+            case "Fuego":
+                ChangeAnimation(4);
+                break;
+            case "CircleOfFire":
+                ChangeAnimation(5);
+                break;
+            case "CircleOfIron":
+                ChangeAnimation(6);
+                break;
+            case "EnfAttack":
+                ChangeAnimation(7);
+                break;
+            case "EnfGuard":
+                ChangeAnimation(8);
+                break;
+            case "Fortius":
+                ChangeAnimation(9);
+                break;
+            default:
+                break;
+        }
+
+        return spellManager.CallAbility(currentAbilityChoice, this.gameObject, currentTarget);
+    }
 }
