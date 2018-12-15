@@ -12,7 +12,8 @@ public class CombatManager : MonoBehaviour {
     bool takenTurn;
     string winner;
     float enemyXP;
-    bool finished;
+    public bool finished;
+    public GameObject turnManager;
 
 	// Use this for initialization
 	void Start () {
