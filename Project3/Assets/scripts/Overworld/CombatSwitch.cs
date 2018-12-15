@@ -43,8 +43,8 @@ public class CombatSwitch : MonoBehaviour {
                     bool eMoving = enemies[i].GetComponent<NPCMove>().moving;
                     if (distance < 1.5f && !pMoving && !eMoving)
                     {
-                        //combatCamera.SetActive(true);
-                        //mainCamera.SetActive(false);
+                        combatCamera.SetActive(true);
+                        mainCamera.SetActive(false);
                         combatUI.SetActive(true);
                         this.GetComponent<TurnManager>().enabled = false;
                         combatManager.GetComponent<CombatManager>().enabled = true;
@@ -73,6 +73,8 @@ public class CombatSwitch : MonoBehaviour {
             combatManager.GetComponent<CombatManager>().enabled = false;
             combatManager.GetComponent<CombatManager>().firstRound = true;
 
+            combatCamera.SetActive(false);
+            mainCamera.SetActive(true);
 
             player.GetComponent<PlayerMove>().enabled = true;
             player.GetComponent<Creature>().currentHealth = player.GetComponent<Creature>().MaxHealth;
