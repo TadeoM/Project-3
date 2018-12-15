@@ -36,7 +36,7 @@ public class CombatSwitch : MonoBehaviour {
                         //combatCamera.SetActive(true);
                         //mainCamera.SetActive(false);
                         combatUI.SetActive(true);
-                        //this.GetComponent<TurnManager>().enabled = false;
+                        this.GetComponent<TurnManager>().enabled = false;
                         combatManager.GetComponent<CombatManager>().enabled = true;
                         player.GetComponent<PlayerMove>().enabled = false;
                         inCombat = true;
@@ -51,7 +51,7 @@ public class CombatSwitch : MonoBehaviour {
         if (inCombat && combatManager.GetComponent<CombatManager>().finished)
         {
             combatUI.SetActive(false);
-            //this.GetComponent<TurnManager>().enabled = true;
+            this.GetComponent<TurnManager>().enabled = true;
             combatManager.GetComponent<CombatManager>().enabled = false;
             player.GetComponent<PlayerMove>().enabled = true;
             inCombat = false;
