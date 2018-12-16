@@ -11,6 +11,10 @@ public class Creature : MonoBehaviour {
     public SpellManager spellManager;
     public GameObject currentTarget;
     public Stats stats;
+    public Animator animator;
+    public int currentAnimation; // 0 = idle, 1 = attack, 2 = damaged
+    public Vector3 startPos;
+    public Vector3 endPos; 
     private int level;
     private int nextLevelXP;
     private int maxHealth;
@@ -27,6 +31,7 @@ public class Creature : MonoBehaviour {
     private float baseRes;
     private float baseSpeed;
     private float experience;
+    public int previousAnimation;
 
 
     public int CurrentMana
@@ -107,8 +112,14 @@ public class Creature : MonoBehaviour {
         {
             knownAbilities.Add(ability, 0);
         }
-      
+        currentAnimation = 0;
+        previousAnimation = 0;
     }
+
+    virtual public void Update()
+    {
+    }
+
     // continues to add levels until it does not have enough experience to level up again
     public void IncreaseExperience(float xp)
     {
@@ -134,9 +145,9 @@ public class Creature : MonoBehaviour {
     /// <summary>
     /// take the current ability choice and pass in the values needed to perform the attack
     /// </summary>
-    public string SelectAttackChoice()
+    virtual public string SelectAttackChoice()
     {
-        //Debug.Log(currentAbilityChoice);
+        Debug.Log(currentAbilityChoice);
         int[] neededResource = spellManager.abilitiesDictionary[currentAbilityChoice];
         if(neededResource[0] > ammo)
         {
@@ -146,15 +157,15 @@ public class Creature : MonoBehaviour {
         {
             return "Could not use ability due to not having enough mana";
         }
-        
-        
+
+        currentAnimation = 1;
         return spellManager.CallAbility(currentAbilityChoice, this.gameObject, currentTarget);
     }
     virtual public string GetChoice() { return "This is the creature GetChoice"; }
     
     public bool CheckDeath()
     {
-        Debug.Log(this.gameObject.name + "  CURRENT HEALTH IS " + currentHealth);
+        //Debug.Log(this.gameObject.name + "  CURRENT HEALTH IS " + currentHealth);
         if (currentHealth <= 0)
             return true;
         else
@@ -163,7 +174,13 @@ public class Creature : MonoBehaviour {
 
     public void TakeDamage(float damage, string type)
     {
-        Debug.Log("Damage done: " + damage);
+        //Debug.Log("Damage done: " + damage);
         currentHealth -= Mathf.FloorToInt(damage);
+    }
+    
+    public void ChangeAnimation(int anim)
+    {
+        animator.SetInteger("animation", anim);
+        previousAnimation = anim;
     }
 }
