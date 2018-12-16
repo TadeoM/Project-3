@@ -17,13 +17,13 @@ public class CameraRotator : MonoBehaviour {
 
         //Translation
         if (Input.GetKey("w"))
-            transform.Translate(Vector3.forward * speed / 4.0f * Time.deltaTime);
-        if (Input.GetKey("a"))
-            transform.Translate(-Vector3.right * speed / 4.0f * Time.deltaTime);
-        if (Input.GetKey("s"))
-            transform.Translate(-Vector3.forward * speed / 4.0f * Time.deltaTime);
-        if (Input.GetKey("d"))
             transform.Translate(Vector3.right * speed / 4.0f * Time.deltaTime);
+        if (Input.GetKey("a"))
+            transform.Translate(Vector3.forward * speed / 4.0f * Time.deltaTime);
+        if (Input.GetKey("s"))
+            transform.Translate(-Vector3.right * speed / 4.0f * Time.deltaTime);
+        if (Input.GetKey("d"))
+            transform.Translate(-Vector3.forward * speed / 4.0f * Time.deltaTime);
         if (Input.GetKey("z"))
             transform.Translate(Vector3.up * speed / 4.0f * Time.deltaTime);
         if (Input.GetKey("x"))
