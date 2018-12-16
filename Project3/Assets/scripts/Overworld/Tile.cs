@@ -24,7 +24,7 @@ public class Tile : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-		
+        Reset();
 	}
 	
 	// Update is called once per frame
