@@ -16,7 +16,7 @@ public class Creature : MonoBehaviour {
     public Vector3 startPos;
     public Vector3 endPos; 
     private int level;
-    private int nextLevelXP;
+    public int nextLevelXP;
     private int maxHealth;
     private int maxMana;
     private int maxAmmo;
