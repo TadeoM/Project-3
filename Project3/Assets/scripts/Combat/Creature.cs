@@ -141,6 +141,15 @@ public class Creature : MonoBehaviour {
                 Debug.Log(Attack);
             }
         }
+
+        if(GetComponent<Animator>() != null)
+        {
+            animator = GetComponent<Animator>();
+        }
+        else
+        {
+            animator = GetComponentInChildren<Animator>();
+        }
     }
     /// <summary>
     /// take the current ability choice and pass in the values needed to perform the attack
