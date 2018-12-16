@@ -58,7 +58,13 @@ public class CombatSwitch : MonoBehaviour {
                        
                         combatManager.GetComponent<CombatManager>().enemy = enemies[i];
                         player.GetComponent<Creature>().currentTarget = enemies[i];
+                        
                         currentEnemy = enemies[i];
+                        Debug.Log(currentEnemy);
+                        Vector3 playerDelta = currentEnemy.transform.position - player.transform.position;
+                        player.transform.rotation = Quaternion.LookRotation(playerDelta, Vector3.up);
+                        Vector3 enemyDelta = player.transform.position - currentEnemy.transform.position;
+                        currentEnemy.transform.rotation = Quaternion.LookRotation(enemyDelta, Vector3.up);
                     }
                 }
             }

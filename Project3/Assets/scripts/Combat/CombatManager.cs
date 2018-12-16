@@ -98,7 +98,6 @@ public class CombatManager : MonoBehaviour {
         else if (takenTurn && timer <= 0)
         {
             // we will progress turn and update the health and mana of everything after the timer
-            Debug.Log("DID THIS THING");
             ProgressTurnOrder();
         }
 
@@ -198,7 +197,6 @@ public class CombatManager : MonoBehaviour {
             middleSet = false;
             OGTimer = timer = 1f;
             startTime = Time.time;
-            Debug.Log(currentEnemy.gameObject.transform.position);
             currentEnemy.startPos = currentEnemy.gameObject.transform.position;
             currentEnemy.endPos = currentEnemy.startPos + (Vector3.Normalize(currentEnemy.currentTarget.transform.position - currentEnemy.startPos) * distanceBetween);
             journeyLength = Vector3.Distance(attackOrder.Peek().startPos, attackOrder.Peek().endPos);
