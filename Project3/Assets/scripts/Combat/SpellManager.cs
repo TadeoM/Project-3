@@ -120,7 +120,7 @@ public class SpellManager : MonoBehaviour {
     {
         Creature otherStats = target.GetComponent<Creature>();
         Creature originStats = origin.GetComponent<Creature>();
-
+        Debug.Log("ATTACK");
         float damage = CalcPhsyical(originStats, otherStats, 10.0f);
         otherStats.TakeDamage(damage, "physical");
 
