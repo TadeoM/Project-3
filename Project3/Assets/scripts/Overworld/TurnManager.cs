@@ -8,13 +8,15 @@ public class TurnManager : MonoBehaviour
     public static Dictionary<string, List<TacticsMove>> units = new Dictionary<string, List<TacticsMove>>();
     static Queue<string> turnKey = new Queue<string>();
     static Queue<TacticsMove> turnTeam = new Queue<TacticsMove>();
+    public bool reset;
 
     // Use this for initialization
     void Start()
     {
-        if (turnTeam.Count == 0)
+        if (turnTeam.Count == 0 || reset)
         {
             InitTeamTurnQueue();
+            reset = false;
         }
     }
 

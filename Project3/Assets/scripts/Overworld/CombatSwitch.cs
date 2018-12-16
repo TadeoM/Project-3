@@ -41,6 +41,7 @@ public class CombatSwitch : MonoBehaviour {
                     float distance = Vector3.Distance(player.transform.position, enemies[i].transform.position);
                     bool pMoving = player.GetComponent<PlayerMove>().moving;
                     bool eMoving = enemies[i].GetComponent<NPCMove>().moving;
+                    
                     if (distance < 1.5f && !pMoving && !eMoving)
                     {
                         combatCamera.SetActive(true);
@@ -79,6 +80,7 @@ public class CombatSwitch : MonoBehaviour {
             player.GetComponent<PlayerMove>().enabled = true;
             player.GetComponent<Creature>().currentHealth = player.GetComponent<Creature>().MaxHealth;
             player.GetComponent<Creature>().CurrentMana = player.GetComponent<Creature>().MaxMana;
+            player.GetComponent<Creature>().Ammo = player.GetComponent<Creature>().MaxAmmo;
 
             inCombat = false;
             foreach (GameObject e in enemies)
@@ -93,18 +95,22 @@ public class CombatSwitch : MonoBehaviour {
             int rand = Random.Range(0, 2);
             if (rand == 0)
             {
-                Vector3 position = new Vector3((float)Random.Range(-6, 17) + 0.5f, 1.4f, (float)Random.Range(18, 21));
-                Instantiate(ghoulPrefab, position, Quaternion.identity);
+                Vector3 position = new Vector3((float)Random.Range(0, 23) + 0.5f, 1.4f, (float)Random.Range(18, 21));
+                GameObject newEnemy = Instantiate(ghoulPrefab, position, Quaternion.identity);
+                enemies.Add(newEnemy);
+
             }
             else if (rand == 1)
             {
-                Vector3 position = new Vector3((float)Random.Range(-6, 17) + 0.5f, 1.4f, (float)Random.Range(18, 21));
-                Instantiate(goblinPrefab, position, Quaternion.identity);
+                Vector3 position = new Vector3((float)Random.Range(0, 23) + 0.5f, 1.4f, (float)Random.Range(18, 21));
+                GameObject newEnemy = Instantiate(goblinPrefab, position, Quaternion.identity);
+                enemies.Add(newEnemy);
             }
             else
             {
-                Vector3 position = new Vector3((float)Random.Range(-6, 17) + 0.5f, 1.4f, (float)Random.Range(18, 21));
-                Instantiate(houndPrefab, position, Quaternion.identity);
+                Vector3 position = new Vector3((float)Random.Range(0, 23) + 0.5f, 1.4f, (float)Random.Range(18, 21));
+                GameObject newEnemy = Instantiate(houndPrefab, position, Quaternion.identity);
+                enemies.Add(newEnemy);
             }
         }
 

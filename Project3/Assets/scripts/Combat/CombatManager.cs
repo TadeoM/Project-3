@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CombatManager : MonoBehaviour {
 
@@ -25,6 +26,8 @@ public class CombatManager : MonoBehaviour {
     public GameObject turnManager;
     public GameObject enemy;
     public bool firstRound = false;
+    public GameObject gameOverUI;
+    public GameObject combatUI;
 
     // Use this for initialization
     void Start () {
@@ -59,9 +62,7 @@ public class CombatManager : MonoBehaviour {
             DetermineAttackOrder();
             firstRound = false;
         }
-
-
-        if (attackOrder.Peek() != null)
+        if (takenTurn && timer > OGTimer * 0.4f)
         {
             
             // Distance moved = time * speed.
@@ -74,7 +75,7 @@ public class CombatManager : MonoBehaviour {
             attackOrder.Peek().transform.position = Vector3.Lerp(attackOrder.Peek().startPos, attackOrder.Peek().endPos, fracJourney);
             
         }
-        if (takenTurn && (timer <= OGTimer * 0.4f && timer > 0))
+        else if (takenTurn && (timer <= OGTimer * 0.4f && timer > 0))
         {
             if(!middleSet)
             {
@@ -100,6 +101,7 @@ public class CombatManager : MonoBehaviour {
             Debug.Log("DID THIS THING");
             ProgressTurnOrder();
         }
+
         if (attackOrder.Peek() != null && !takenTurn)
         {
             CalculateTurn();
@@ -107,9 +109,16 @@ public class CombatManager : MonoBehaviour {
         else if(winner != "nil")
         {
             Debug.Log("The winner of this fight is " + winner);
-            if(winner == "Dresden" && !finished)
+            if(winner == "Player" && !finished)
             {
                 playerCharacter.IncreaseExperience(enemyXP);
+            }
+            else
+            {
+                //SceneManager.LoadScene("title");
+                gameOverUI.SetActive(true);
+                combatUI.SetActive(false);
+                Time.timeScale = 0;
             }
             finished = true;
         }
@@ -189,11 +198,12 @@ public class CombatManager : MonoBehaviour {
             middleSet = false;
             OGTimer = timer = 1f;
             startTime = Time.time;
-            currentEnemy.startPos = currentEnemy.transform.position;
+            Debug.Log(currentEnemy.gameObject.transform.position);
+            currentEnemy.startPos = currentEnemy.gameObject.transform.position;
             currentEnemy.endPos = currentEnemy.startPos + (Vector3.Normalize(currentEnemy.currentTarget.transform.position - currentEnemy.startPos) * distanceBetween);
-            currentEnemy.endPos.y = currentEnemy.transform.position.y;
             journeyLength = Vector3.Distance(attackOrder.Peek().startPos, attackOrder.Peek().endPos);
             currentEnemy.ChangeAnimation(1);
+            
         }
         else if (attackOrder.Peek().currentAbilityChoice != "")
         {
@@ -207,10 +217,9 @@ public class CombatManager : MonoBehaviour {
             middleSet = false;
             OGTimer = timer = 1f;
             startTime = Time.time;
-            dresdon.startPos = dresdon.transform.position;
-            
+            dresdon.startPos = dresdon.gameObject.transform.position;
+            Debug.Log(dresdon.gameObject.transform.position);
             dresdon.endPos = dresdon.startPos + (Vector3.Normalize(dresdon.currentTarget.transform.position - dresdon.startPos) * distanceBetween);
-            dresdon.endPos.y = dresdon.transform.position.y;
             Debug.Log(dresdon.endPos);
             journeyLength = Vector3.Distance(dresdon.startPos, dresdon.endPos);
             //dresdon.ChangeAnimation(1);

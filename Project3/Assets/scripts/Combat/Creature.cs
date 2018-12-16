@@ -16,9 +16,10 @@ public class Creature : MonoBehaviour {
     public Vector3 startPos;
     public Vector3 endPos; 
     private int level;
-    private int nextLevelXP;
+    public int nextLevelXP;
     private int maxHealth;
     private int maxMana;
+    private int maxAmmo;
     private int ammo;
     public int currentHealth;
     public int currentMana;
@@ -60,15 +61,23 @@ public class Creature : MonoBehaviour {
     public int MaxHealth
     {
         get { return maxHealth; }
+        set { maxHealth = value; }
+
     }
     public int MaxMana
     {
         get { return maxMana; }
+        set { maxMana = value; }
     }
     public int Ammo
     {
         get { return ammo; }
         set { ammo = value; }
+    }
+    public int MaxAmmo
+    {
+        get { return maxAmmo; }
+        set { maxAmmo = value; }
     }
     /// <summary>
     /// set values from the stats attached to it
@@ -76,11 +85,12 @@ public class Creature : MonoBehaviour {
     public void Awake()
     {
         spellManager = GameObject.FindGameObjectWithTag("spellManager").GetComponent<SpellManager>();
-        nextLevelXP = 100;
+        nextLevelXP = 25;
         level = stats.level;
         maxHealth = stats.health;
         maxMana = stats.mana;
-        ammo = stats.ammo;
+        maxAmmo = stats.ammo;
+        ammo = maxAmmo;
         Magic = stats.magic;
         Defense = stats.defense;
         Attack = stats.attack;
@@ -120,15 +130,25 @@ public class Creature : MonoBehaviour {
             if (experience >= nextLevelXP)
             {
                 level++;
-                nextLevelXP += 100;
-                maxHealth = (int)(baseHealth * level) / 2;
-                maxMana = (int)(baseMana + level);
-                Attack = (int)(baseAttack * level) / 3;
-                Magic = (int)(baseMagic * level) / 3;
-                Defense = (int)(baseDefense * level) / 3;
-                Resistance = (int)(baseRes * level) / 3;
-                Speed = (int)(baseSpeed * level) / 3;
+                nextLevelXP += 50;
+                MaxHealth += (int)(baseHealth * level) / 2;
+                MaxMana += (int)(baseMana + level);
+                Attack += (int)(baseAttack * level) / 3;
+                Magic += (int)(baseMagic * level) / 3;
+                Defense += (int)(baseDefense * level) / 3;
+                Resistance += (int)(baseRes * level) / 3;
+                Speed += (int)(baseSpeed * level) / 3;
+                Debug.Log(Attack);
             }
+        }
+
+        if(GetComponent<Animator>() != null)
+        {
+            animator = GetComponent<Animator>();
+        }
+        else
+        {
+            animator = GetComponentInChildren<Animator>();
         }
     }
     /// <summary>

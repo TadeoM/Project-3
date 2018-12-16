@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: dd88dfe0a99ff8d4bb89be365fb72fa8
+=======
 guid: d8845c258cda0064081e86079a93e378
+>>>>>>> tadeoV2
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6
