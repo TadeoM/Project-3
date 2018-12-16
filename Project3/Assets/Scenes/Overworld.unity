@@ -39931,9 +39931,12 @@ MonoBehaviour:
   combatUI: {fileID: 1998326019}
   inCombat: 0
   currentEnemy: {fileID: 0}
-  ghoulPrefab: {fileID: 0}
-  goblinPrefab: {fileID: 0}
-  houndPrefab: {fileID: 0}
+  ghoulPrefab: {fileID: 1336251779914560, guid: 0f8ae101df289ca4ea61c8d74d670309,
+    type: 2}
+  goblinPrefab: {fileID: 1580717226536470, guid: e4d4875f72c8ccd478975cc73ee35bf5,
+    type: 2}
+  houndPrefab: {fileID: 1714917848086722, guid: 5aebfd4b2a6ebd349ac78cb0828247ad,
+    type: 2}
 --- !u!1 &1227819212
 GameObject:
   m_ObjectHideFlags: 0
