@@ -131,13 +131,13 @@ public class Creature : MonoBehaviour {
             {
                 level++;
                 nextLevelXP += 50;
-                MaxHealth += (int)(baseHealth * level) / 2;
-                MaxMana += (int)(baseMana + level);
-                Attack += (int)(baseAttack * level) / 3;
-                Magic += (int)(baseMagic * level) / 3;
-                Defense += (int)(baseDefense * level) / 3;
-                Resistance += (int)(baseRes * level) / 3;
-                Speed += (int)(baseSpeed * level) / 3;
+                MaxHealth += (int)(baseHealth * level) / 3;
+                MaxMana += (int)(level);
+                Attack += (int)(baseAttack * level) / 4;
+                Magic += (int)(baseMagic * level) / 4;
+                Defense += (int)(baseDefense * level) / 4;
+                Resistance += (int)(baseRes * level) / 4;
+                Speed += (int)(baseSpeed * level) / 4;
                 Debug.Log(Attack);
             }
         }

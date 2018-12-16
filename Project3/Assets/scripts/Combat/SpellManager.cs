@@ -64,7 +64,7 @@ public class SpellManager : MonoBehaviour {
                 whatHappened = COfIron(origin, target);
                 break;
             case "EnfeebleAttack":
-                whatHappened =EnfeebleAttack(origin, target);
+                whatHappened = EnfeebleAttack(origin, target);
                 break;
             case "EnfeebleGuard":
                 whatHappened = EnfeebleGuard(origin, target);

@@ -2649,7 +2649,7 @@ MonoBehaviour:
   spellManager: {fileID: 0}
   currentTarget: {fileID: 0}
   stats: {fileID: 11400000, guid: 92f8cd93aaff7a64386d06f2017e82c5, type: 2}
-  animator: {fileID: 0}
+  animator: {fileID: 95298279053985642}
   currentAnimation: 0
   startPos: {x: 0, y: 0, z: 0}
   endPos: {x: 0, y: 0, z: 0}
