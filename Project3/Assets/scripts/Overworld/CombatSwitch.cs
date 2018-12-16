@@ -41,6 +41,7 @@ public class CombatSwitch : MonoBehaviour {
                     float distance = Vector3.Distance(player.transform.position, enemies[i].transform.position);
                     bool pMoving = player.GetComponent<PlayerMove>().moving;
                     bool eMoving = enemies[i].GetComponent<NPCMove>().moving;
+                    
                     if (distance < 1.5f && !pMoving && !eMoving)
                     {
                         combatCamera.SetActive(true);
