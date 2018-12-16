@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43715984, g: 0.48488933, b: 0.5651555, a: 1}
+  m_IndirectSpecularColor: {r: 0.43715996, g: 0.4848892, b: 0.5651555, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7820,11 +7820,11 @@ RectTransform:
   m_LocalScale: {x: 0.39597118, y: 4.188312, z: 1}
   m_Children: []
   m_Father: {fileID: 1442750731}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -15.7, y: -205.99997}
+  m_AnchoredPosition: {x: -0.4, y: -205.99997}
   m_SizeDelta: {x: 80, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &258294384
@@ -8645,81 +8645,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 296567491}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &303006163
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 303006164}
-  - component: {fileID: 303006166}
-  - component: {fileID: 303006165}
-  m_Layer: 5
-  m_Name: CurrentXP
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &303006164
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 303006163}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.39597118, y: 4.188312, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1442750731}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 15.9, y: -206}
-  m_SizeDelta: {x: 80, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &303006165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 303006163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.9339623, g: 0.749175, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 1
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: 'XP: 0/25'
---- !u!222 &303006166
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 303006163}
-  m_CullTransparentMesh: 0
 --- !u!1 &308592829
 GameObject:
   m_ObjectHideFlags: 0
@@ -10152,10 +10077,6 @@ Prefab:
       propertyPath: spellManager
       value: 
       objectReference: {fileID: 1877360348}
-    - target: {fileID: 1580717226536470, guid: e4d4875f72c8ccd478975cc73ee35bf5, type: 2}
-      propertyPath: m_Name
-      value: Goblin
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4d4875f72c8ccd478975cc73ee35bf5, type: 2}
   m_IsPrefabAsset: 0
@@ -14852,13 +14773,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 486574860}
-  m_LocalRotation: {x: 0.549758, y: -0, z: -0, w: 0.83532405}
-  m_LocalPosition: {x: -1.1900005, y: 17.59, z: -10.1}
+  m_LocalRotation: {x: 0.38873854, y: 0.59066266, z: -0.38873854, w: 0.59066266}
+  m_LocalPosition: {x: -9.94, y: 17.39, z: 2.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2010534749}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 66.701004, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 66.701, y: 90, z: 0}
 --- !u!1 &497179268
 GameObject:
   m_ObjectHideFlags: 0
@@ -15013,7 +14934,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -75.39999}
+  m_AnchoredPosition: {x: -619, y: -208.5}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &502890321
@@ -37912,10 +37833,6 @@ Prefab:
       propertyPath: spellManager
       value: 
       objectReference: {fileID: 1877360348}
-    - target: {fileID: 1714917848086722, guid: 5aebfd4b2a6ebd349ac78cb0828247ad, type: 2}
-      propertyPath: m_Name
-      value: Hellhound
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5aebfd4b2a6ebd349ac78cb0828247ad, type: 2}
   m_IsPrefabAsset: 0
@@ -46790,7 +46707,6 @@ RectTransform:
   m_LocalScale: {x: 2.5254364, y: 0.23875967, z: 1}
   m_Children:
   - {fileID: 1652831493}
-  - {fileID: 303006164}
   - {fileID: 258294383}
   m_Father: {fileID: 502890320}
   m_RootOrder: 0
@@ -46817,7 +46733,7 @@ MonoBehaviour:
   dresdon: {fileID: 2069755695}
   currentLevel: 0
   currentXP: 0
-  current: {fileID: 303006165}
+  current: {fileID: 0}
   currentLvl: {fileID: 258294384}
 --- !u!1 &1445128929
 GameObject:
@@ -49797,10 +49713,6 @@ Prefab:
       propertyPath: spellManager
       value: 
       objectReference: {fileID: 1877360348}
-    - target: {fileID: 1336251779914560, guid: 0f8ae101df289ca4ea61c8d74d670309, type: 2}
-      propertyPath: m_Name
-      value: Ghoul
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f8ae101df289ca4ea61c8d74d670309, type: 2}
   m_IsPrefabAsset: 0
@@ -60600,10 +60512,10 @@ MonoBehaviour:
   takenTurn: 0
   winner: 
   finished: 0
-  turnManager: {fileID: 0}
+  turnManager: {fileID: 1226351100}
   enemy: {fileID: 0}
   firstRound: 0
-  gameOverUI: {fileID: 0}
+  gameOverUI: {fileID: 1174917428}
   combatUI: {fileID: 0}
 --- !u!114 &1877360348
 MonoBehaviour:
