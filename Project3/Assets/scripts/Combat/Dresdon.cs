@@ -11,7 +11,6 @@ public class Dresdon : Creature {
 
     override public string SelectAttackChoice()
     {
-        base.SelectAttackChoice();
 
         switch (currentAbilityChoice)
         {
@@ -45,7 +44,6 @@ public class Dresdon : Creature {
             default:
                 break;
         }
-
-        return spellManager.CallAbility(currentAbilityChoice, this.gameObject, currentTarget);
+        return base.SelectAttackChoice();
     }
 }

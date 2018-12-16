@@ -156,7 +156,6 @@ public class Creature : MonoBehaviour {
     /// </summary>
     virtual public string SelectAttackChoice()
     {
-        Debug.Log(currentAbilityChoice);
         int[] neededResource = spellManager.abilitiesDictionary[currentAbilityChoice];
         if(neededResource[0] > ammo)
         {
