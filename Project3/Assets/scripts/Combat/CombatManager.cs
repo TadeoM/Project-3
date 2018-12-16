@@ -26,6 +26,8 @@ public class CombatManager : MonoBehaviour {
     public GameObject turnManager;
     public GameObject enemy;
     public bool firstRound = false;
+    public GameObject gameOverUI;
+    public GameObject combatUI;
 
     // Use this for initialization
     void Start () {
@@ -114,7 +116,10 @@ public class CombatManager : MonoBehaviour {
             }
             else
             {
-                SceneManager.LoadScene("title");
+                //SceneManager.LoadScene("title");
+                gameOverUI.SetActive(true);
+                combatUI.SetActive(false);
+                Time.timeScale = 0;
             }
             finished = true;
         }
