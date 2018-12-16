@@ -109,7 +109,7 @@ public class CombatManager : MonoBehaviour {
         else if(winner != "nil")
         {
             Debug.Log("The winner of this fight is " + winner);
-            if(winner == "Player" && !finished)
+            if(winner == "Dresden" && !finished)
             {
                 playerCharacter.IncreaseExperience(enemyXP);
             }

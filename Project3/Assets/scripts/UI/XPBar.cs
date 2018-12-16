@@ -35,20 +35,24 @@ public class XPBar : MonoBehaviour {
     void Update()
     {
         Max = dresdon.GetComponent<Dresdon>().nextLevelXP;
-        SetXP(dresdon.GetComponent<Dresdon>().Experience);
+        currentXP = dresdon.GetComponent<Dresdon>().Experience;
+        SetXP(currentXP);
         currentLevel = dresdon.GetComponent<Dresdon>().Level;
         current.text = "XP: " + currentXP + "/" + Max;
         currentLvl.text = "LVL: " + currentLevel;
+        
     }
 
     public void SetXP(float xp)
     {
+        
         if (xp < Max && currentLevel != 10)
         {
             mCurrentValue = xp;
             mCurrentPercent = mCurrentValue / (float)Max;
-            currentXP += xp;
+            //currentXP += xp;
             ImgXPBar.fillAmount = mCurrentPercent;
+            
         }
         else
         {

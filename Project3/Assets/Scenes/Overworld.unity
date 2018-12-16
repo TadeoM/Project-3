@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731199, g: 0.3807403, b: 0.35872707, a: 1}
+  m_IndirectSpecularColor: {r: 0.43715996, g: 0.4848892, b: 0.5651555, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1085,11 +1085,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 24746436}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!95 &27292813 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 95807127917777706, guid: 7478fde6ababc6c439b50ed8909d8b9b,
-    type: 2}
-  m_PrefabInternal: {fileID: 355972513}
 --- !u!1 &34281001
 GameObject:
   m_ObjectHideFlags: 0
@@ -5318,11 +5313,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 160059738}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!95 &164610978 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 95191031661392682, guid: eac56ca3d7e928b4c9e883c0da8abd5a,
-    type: 2}
-  m_PrefabInternal: {fileID: 1193202272}
 --- !u!1 &164647067
 GameObject:
   m_ObjectHideFlags: 0
@@ -40513,60 +40503,6 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 95681209399714542, guid: 57ba525baafe8a74099720f5c81bc3c0,
     type: 2}
   m_PrefabInternal: {fileID: 522787794}
---- !u!136 &1293392464
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1293392463}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.15447481
-  m_Height: 0.5978128
-  m_Direction: 1
-  m_Center: {x: 0.00026600703, y: 0.0201872, z: 0.013369833}
---- !u!114 &1293392465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1293392463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8a4e298b7e9bd94d978684051f06f1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentAbilityChoice: 
-  spellManager: {fileID: 1877360348}
-  currentTarget: {fileID: 0}
-  stats: {fileID: 11400000, guid: 51416c2c20f46ca429c12b149207d164, type: 2}
-  animator: {fileID: 0}
-  currentAnimation: 0
-  startPos: {x: 0, y: 0, z: 0}
-  endPos: {x: 0, y: 0, z: 0}
-  nextLevelXP: 0
-  currentHealth: 0
-  currentMana: 0
-  previousAnimation: 0
---- !u!114 &1293392466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1293392463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9a12d8f210a0554e816f3a5281c5adf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turn: 0
-  moving: 0
-  move: 0
-  jumpheight: 2
-  movespeed: 2
-  jumpVelocity: 4.5
-  actualTargetTile: {fileID: 0}
 --- !u!1 &1295935575
 GameObject:
   m_ObjectHideFlags: 0
@@ -52538,7 +52474,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.5
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -52572,7 +52508,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1690596333}
   m_LocalRotation: {x: 0.6358047, y: -0.19484255, z: 0.17036334, w: 0.7271625}
-  m_LocalPosition: {x: 12.91, y: 3, z: -11.76}
+  m_LocalPosition: {x: 15.6, y: 32.4, z: -16.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

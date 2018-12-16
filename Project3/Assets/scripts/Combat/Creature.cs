@@ -85,7 +85,7 @@ public class Creature : MonoBehaviour {
     public void Awake()
     {
         spellManager = GameObject.FindGameObjectWithTag("spellManager").GetComponent<SpellManager>();
-        nextLevelXP = 25;
+        nextLevelXP = 50;
         level = stats.level;
         maxHealth = stats.health;
         maxMana = stats.mana;

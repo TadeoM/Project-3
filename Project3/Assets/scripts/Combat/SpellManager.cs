@@ -171,7 +171,7 @@ public class SpellManager : MonoBehaviour {
         Creature originStats = origin.GetComponent<Creature>();
 
         float damage = CalcMagical(originStats, otherStats, 20.0f);
-
+        Debug.Log("THIS IS BREAKING");
         otherStats.TakeDamage(damage, "magical");
         origin.GetComponent<Creature>().CurrentMana -= 5;
         return origin.name + " did " + damage + " magical damage to " + target.name;
