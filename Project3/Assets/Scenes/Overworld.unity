@@ -42587,7 +42587,7 @@ MonoBehaviour:
     type: 2}
   houndPrefab: {fileID: 1269944770291004, guid: 637ef1b7499850247a207d5ab16635a1,
     type: 2}
-  EnemyHealth: {fileID: 0}
+  EnemyHealth: {fileID: 953594107}
   playerExp: 0
 --- !u!114 &1226351104
 MonoBehaviour:
@@ -64141,8 +64141,8 @@ MonoBehaviour:
   firstRound: 0
   gameOverUI: {fileID: 1174917428}
   combatUI: {fileID: 1998326019}
-  musicManager: {fileID: 0}
-  hud: {fileID: 0}
+  musicManager: {fileID: 1226351106}
+  hud: {fileID: 988015694}
 --- !u!114 &1877360348
 MonoBehaviour:
   m_ObjectHideFlags: 0
