@@ -28,6 +28,7 @@ public class CombatManager : MonoBehaviour {
     public bool firstRound = false;
     public GameObject gameOverUI;
     public GameObject combatUI;
+    public MusicManagement musicManager;
 
     // Use this for initialization
     void Start () {
@@ -115,6 +116,7 @@ public class CombatManager : MonoBehaviour {
             else
             {
                 //SceneManager.LoadScene("title");
+                musicManager.gameOver = true;
                 gameOverUI.SetActive(true);
                 combatUI.SetActive(false);
                 Time.timeScale = 0;

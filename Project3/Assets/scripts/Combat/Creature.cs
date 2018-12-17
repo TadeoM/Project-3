@@ -139,6 +139,10 @@ public class Creature : MonoBehaviour {
                 Resistance += (int)(baseRes * level) / 4;
                 Speed += (int)(baseSpeed * level) / 4;
                 Debug.Log(Attack);
+                if(name.Contains("Dresdon"))
+                {
+                    GetComponent<AudioSource>().Play();
+                }
             }
         }
 
