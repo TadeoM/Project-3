@@ -5,6 +5,7 @@ using UnityEngine;
 public class TacticsMove : MonoBehaviour
 {
     public bool turn = false;
+    public Animator animator;
 
     List<Tile> selectableTiles = new List<Tile>();
     GameObject[] tiles;
@@ -107,6 +108,7 @@ public class TacticsMove : MonoBehaviour
         path.Clear();
         tile.target = true;
         moving = true;
+        animator.SetInteger("animation", 100);
 
         Tile next = tile;
         while(next != null)
@@ -120,6 +122,8 @@ public class TacticsMove : MonoBehaviour
     {
         if (path.Count > 0)
         {
+            animator.SetInteger("animation", 100);
+
             Tile t = path.Peek();
             Vector3 target = t.transform.position;
 
@@ -148,6 +152,7 @@ public class TacticsMove : MonoBehaviour
             else
             {
                 //tile center reached
+                animator.SetInteger("animation", 0);
                 transform.position = target;
                 path.Pop();
             }

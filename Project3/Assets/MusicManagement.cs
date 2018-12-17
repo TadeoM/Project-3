@@ -44,11 +44,5 @@ public class MusicManagement : MonoBehaviour {
                 combat.Play();
             }
         }
-        //audio.clip = engineStartClip;
-        //audio.Play();
-        //yield return new WaitForSeconds(audio.clip.length);
-        //audio.clip = engineLoopClip;
-        //audio.Play();
-
     }
 }

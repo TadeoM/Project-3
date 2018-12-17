@@ -6485,6 +6485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turn: 0
+  animator: {fileID: 0}
   moving: 0
   move: 3
   jumpheight: 2
@@ -7566,6 +7567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turn: 0
+  animator: {fileID: 0}
   moving: 0
   move: 3
   jumpheight: 2
@@ -10826,6 +10828,11 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.6
       objectReference: {fileID: 0}
+    - target: {fileID: 114984144199897434, guid: e4d4875f72c8ccd478975cc73ee35bf5,
+        type: 2}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1561119879}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4d4875f72c8ccd478975cc73ee35bf5, type: 2}
   m_IsPrefabAsset: 0
@@ -27451,6 +27458,11 @@ Transform:
   m_Father: {fileID: 1701921716}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &832402005 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95960584279614176, guid: 637ef1b7499850247a207d5ab16635a1,
+    type: 2}
+  m_PrefabInternal: {fileID: 1351302821}
 --- !u!1 &835827821
 GameObject:
   m_ObjectHideFlags: 0
@@ -39988,6 +40000,11 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 114480766839483348, guid: 637ef1b7499850247a207d5ab16635a1,
+        type: 2}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1602319789}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 637ef1b7499850247a207d5ab16635a1, type: 2}
   m_IsPrefabAsset: 0
@@ -40315,6 +40332,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1195933081}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &1195956980 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95195448951473598, guid: 0f8ae101df289ca4ea61c8d74d670309,
+    type: 2}
+  m_PrefabInternal: {fileID: 1540771345}
 --- !u!1 &1197314862
 GameObject:
   m_ObjectHideFlags: 0
@@ -46138,6 +46160,15 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 1229396753907278, guid: 637ef1b7499850247a207d5ab16635a1, type: 2}
+      propertyPath: m_Name
+      value: Hellhound2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114480766839483348, guid: 637ef1b7499850247a207d5ab16635a1,
+        type: 2}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 832402005}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 637ef1b7499850247a207d5ab16635a1, type: 2}
   m_IsPrefabAsset: 0
@@ -52401,6 +52432,11 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114889917932507684, guid: 0f8ae101df289ca4ea61c8d74d670309,
+        type: 2}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1195956980}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f8ae101df289ca4ea61c8d74d670309, type: 2}
   m_IsPrefabAsset: 0
@@ -52728,6 +52764,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1546244913}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &1561119879 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95274991967936434, guid: e4d4875f72c8ccd478975cc73ee35bf5,
+    type: 2}
+  m_PrefabInternal: {fileID: 355972513}
 --- !u!1 &1562968233
 GameObject:
   m_ObjectHideFlags: 0
@@ -53703,6 +53744,11 @@ Transform:
   m_Father: {fileID: 297870658}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1602319789 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95960584279614176, guid: 637ef1b7499850247a207d5ab16635a1,
+    type: 2}
+  m_PrefabInternal: {fileID: 1193202272}
 --- !u!1 &1604421421
 GameObject:
   m_ObjectHideFlags: 0
@@ -63361,7 +63407,7 @@ Transform:
   m_GameObject: {fileID: 1882323821}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: -1.493, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 982523833}
   - {fileID: 1204795010}
@@ -70202,6 +70248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turn: 0
+  animator: {fileID: 2069755700}
   moving: 0
   move: 3
   jumpheight: 2

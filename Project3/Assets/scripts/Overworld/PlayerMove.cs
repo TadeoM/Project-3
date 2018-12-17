@@ -24,6 +24,7 @@ public class PlayerMove : TacticsMove {
         {
             FindSelectableTiles();
             CheckMouse();
+            animator.SetInteger("animation", 0);
         }
         else
         {

@@ -29,6 +29,7 @@ public class NPCMove : TacticsMove {
             CalculatePath();
             FindSelectableTiles();
             actualTargetTile.target = true;
+            animator.SetInteger("animation", 0);
         }
         else
         {
