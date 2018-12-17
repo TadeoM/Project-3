@@ -46,7 +46,7 @@ public class CombatManager : MonoBehaviour {
         // }
         DetermineAttackOrder();
         speed = 1.1f;
-        distanceBetween = 0.6f;
+        distanceBetween = 0.4f;
     }
 	
 	// Update is called once per frame
