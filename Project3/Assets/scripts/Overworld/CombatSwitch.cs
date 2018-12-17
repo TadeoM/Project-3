@@ -97,27 +97,30 @@ public class CombatSwitch : MonoBehaviour {
                 }
             }
             enemies.Remove(currentEnemy);
-
+            float playerExp = ( player.GetComponent<Creature>().Level - 1) * 50;
             int rand = Random.Range(0, 2);
+            GameObject enemyPrefab;
+            GameObject newEnemy;
+            Vector3 position;
             if (rand == 0)
             {
-                Vector3 position = new Vector3((float)Random.Range(0, 23) + 0.5f, 1.4f, (float)Random.Range(18, 21));
-                GameObject newEnemy = Instantiate(ghoulPrefab, position, Quaternion.identity);
-                enemies.Add(newEnemy);
-
+                position = new Vector3((float)Random.Range(0, 23) + 0.5f, 1.4f, (float)Random.Range(18, 21));
+                enemyPrefab = ghoulPrefab;
             }
             else if (rand == 1)
             {
-                Vector3 position = new Vector3((float)Random.Range(0, 23) + 0.5f, 1.4f, (float)Random.Range(18, 21));
-                GameObject newEnemy = Instantiate(goblinPrefab, position, Quaternion.identity);
-                enemies.Add(newEnemy);
+                position = new Vector3((float)Random.Range(0, 23) + 0.5f, 1.4f, (float)Random.Range(18, 21));
+                enemyPrefab = goblinPrefab;
             }
             else
             {
-                Vector3 position = new Vector3((float)Random.Range(0, 23) + 0.5f, 1.4f, (float)Random.Range(18, 21));
-                GameObject newEnemy = Instantiate(houndPrefab, position, Quaternion.identity);
-                enemies.Add(newEnemy);
+                position = new Vector3((float)Random.Range(0, 23) + 0.5f, 1.4f, (float)Random.Range(18, 21));
+                enemyPrefab = houndPrefab;
+                
             }
+            newEnemy = Instantiate(enemyPrefab, position, Quaternion.identity);
+            newEnemy.GetComponent<Creature>().IncreaseExperience(playerExp);
+            enemies.Add(newEnemy);
         }
 
     }
