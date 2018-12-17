@@ -8,9 +8,6 @@ public class MusicManagement : MonoBehaviour {
     public AudioSource combat;
     public AudioClip[] combatClips;
     CombatSwitch combatSwitcheroo;
-    float timer;
-    bool switched;
-
 	// Use this for initialization
 	void Start () {
         combatSwitcheroo = GetComponent<CombatSwitch>();
@@ -20,30 +17,15 @@ public class MusicManagement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(combatSwitcheroo.inCombat && combat.volume < 1.0f)
+		if(combatSwitcheroo.inCombat && combat.volume < 0.95f)
         {
-            switched = false;
-            combat.clip = combatClips[0];
-            timer = combat.clip.length / 2.1f;
             overworld.volume -= 0.01f;
             combat.volume += 0.01f;
         }
-        else if (!combatSwitcheroo.inCombat && overworld.volume < 1.0f)
+        else if (!combatSwitcheroo.inCombat && overworld.volume < 0.95f)
         {
             overworld.volume += 0.05f;
             combat.volume -= 0.05f;
-        }
-        if(combatSwitcheroo.inCombat && !switched)
-        {
-            timer -= 1 * Time.deltaTime;
-            Debug.Log(timer);
-            if (timer <= 0.0f)
-            {
-                combat.clip = combatClips[1];
-                switched = true;
-                combat.Play();
-                combat.loop = true;
-            }
         }
     }
 }

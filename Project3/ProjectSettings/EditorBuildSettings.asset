@@ -8,16 +8,16 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/Scenes/Tigers.unity
-    guid: f68e12b80c202ac43accc5374d1e628d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/title.unity
     guid: ff8ee5fe0aab0e7429433951838ba731
-  - enabled: 1
-    path: Assets/Scenes/Overworld.unity
-    guid: 8c3d0f004671de446b95f3056b78399c
   - enabled: 0
     path: Assets/Scenes/CombatScene.unity
     guid: a3d675830d1f6d84a8c3b3e7ea8eece5
+  - enabled: 0
+    path: Assets/Scenes/Overworld.unity
+    guid: 8c3d0f004671de446b95f3056b78399c
+  - enabled: 1
+    path: Assets/Scenes/Tigers.unity
+    guid: f68e12b80c202ac43accc5374d1e628d
   m_configObjects: {}
