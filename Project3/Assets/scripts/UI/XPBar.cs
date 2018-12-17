@@ -34,13 +34,9 @@ public class XPBar : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (dresdon != null)
-        {
-            Max = dresdon.GetComponent<Dresdon>().nextLevelXP;
-            SetXP(dresdon.GetComponent<Dresdon>().Experience);
-            currentLevel = dresdon.GetComponent<Dresdon>().Level;
-        }
-        
+        Max = dresdon.GetComponent<Dresdon>().nextLevelXP;
+        SetXP(dresdon.GetComponent<Dresdon>().Experience);
+        currentLevel = dresdon.GetComponent<Dresdon>().Level;
         //current.text = "XP: " + currentXP + "/" + Max;
         currentLvl.text = "LVL: " + currentLevel;
     }

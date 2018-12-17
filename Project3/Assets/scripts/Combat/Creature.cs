@@ -118,6 +118,8 @@ public class Creature : MonoBehaviour {
 
     virtual public void Update()
     {
+        if (CurrentMana < 0)
+            CurrentMana = 0;
     }
 
     // continues to add levels until it does not have enough experience to level up again

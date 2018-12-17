@@ -10,9 +10,6 @@ public class MusicManagement : MonoBehaviour {
     public AudioClip[] combatClips;
     Dresdon player;
     CombatSwitch combatSwitcheroo;
-    float timer;
-    bool switched;
-
 	// Use this for initialization
 	void Start () {
         combatSwitcheroo = GetComponent<CombatSwitch>();
@@ -39,7 +36,7 @@ public class MusicManagement : MonoBehaviour {
             overworld.volume -= 0.01f;
             combat.volume += 0.01f;
         }
-        else if (!combatSwitcheroo.inCombat && overworld.volume < 1.0f)
+        else if (!combatSwitcheroo.inCombat && overworld.volume < 0.95f)
         {
             overworld.volume += 0.01f;
             combat.volume -= 0.01f;
