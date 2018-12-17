@@ -28,8 +28,6 @@ public class CombatManager : MonoBehaviour {
     public bool firstRound = false;
     public GameObject gameOverUI;
     public GameObject combatUI;
-    public GameObject mainCam;
-    public GameObject hud;
 
     // Use this for initialization
     void Start () {
@@ -119,9 +117,6 @@ public class CombatManager : MonoBehaviour {
                 //SceneManager.LoadScene("title");
                 gameOverUI.SetActive(true);
                 combatUI.SetActive(false);
-                hud.SetActive(false);
-                //mainCam.SetActive(true);
-                finished = true;
                 Time.timeScale = 0;
             }
             finished = true;

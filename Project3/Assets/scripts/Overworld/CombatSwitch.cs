@@ -10,16 +10,14 @@ public class CombatSwitch : MonoBehaviour {
     public GameObject mainCamera;
     public GameObject combatManager;
     public GameObject combatUI;
-    public GameObject gameOverUI;
     public bool inCombat;
     public GameObject currentEnemy;
     public GameObject ghoulPrefab;
     public GameObject goblinPrefab;
     public GameObject houndPrefab;
-    public float playerExp;
 
-    // Use this for initialization
-    void Start ()
+	// Use this for initialization
+	void Start ()
     {
         inCombat = false;
         GameObject[] allEnemies = GameObject.FindGameObjectsWithTag("enemy");
@@ -38,7 +36,7 @@ public class CombatSwitch : MonoBehaviour {
         {
             for (int i = 0; i < enemies.Count; i++)
             {
-                if (enemies[i] != null && player != null)
+                if (enemies[i] != null)
                 {
                     float distance = Vector3.Distance(player.transform.position, enemies[i].transform.position);
                     bool pMoving = player.GetComponent<PlayerMove>().moving;
@@ -82,19 +80,13 @@ public class CombatSwitch : MonoBehaviour {
             combatManager.GetComponent<CombatManager>().enabled = false;
             combatManager.GetComponent<CombatManager>().firstRound = true;
 
-            if (combatCamera != null)
-            {
-                combatCamera.SetActive(false);
-            }
+            combatCamera.SetActive(false);
             mainCamera.SetActive(true);
 
-            if (player != null)
-            {
-                player.GetComponent<PlayerMove>().enabled = true;
-                player.GetComponent<Creature>().currentHealth = player.GetComponent<Creature>().MaxHealth;
-                player.GetComponent<Creature>().CurrentMana = player.GetComponent<Creature>().MaxMana;
-                player.GetComponent<Creature>().Ammo = player.GetComponent<Creature>().MaxAmmo;
-            }
+            player.GetComponent<PlayerMove>().enabled = true;
+            player.GetComponent<Creature>().currentHealth = player.GetComponent<Creature>().MaxHealth;
+            player.GetComponent<Creature>().CurrentMana = player.GetComponent<Creature>().MaxMana;
+            player.GetComponent<Creature>().Ammo = player.GetComponent<Creature>().MaxAmmo;
 
             inCombat = false;
             foreach (GameObject e in enemies)
@@ -105,11 +97,7 @@ public class CombatSwitch : MonoBehaviour {
                 }
             }
             enemies.Remove(currentEnemy);
-            if (player != null)
-            {
-                playerExp = (player.GetComponent<Creature>().Level - 1) * 50;
-            }
-            
+            float playerExp = ( player.GetComponent<Creature>().Level - 1) * 50;
             int rand = Random.Range(0, 2);
             GameObject enemyPrefab;
             GameObject newEnemy;
@@ -129,10 +117,6 @@ public class CombatSwitch : MonoBehaviour {
                 position = new Vector3((float)Random.Range(0, 23) + 0.5f, 1.4f, (float)Random.Range(18, 21));
                 enemyPrefab = houndPrefab;
                 
-            }
-            if (player != null)
-            {
-
             }
             newEnemy = Instantiate(enemyPrefab, position, Quaternion.identity);
             newEnemy.GetComponent<Creature>().IncreaseExperience(playerExp);
