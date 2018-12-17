@@ -29,6 +29,7 @@ public class CombatManager : MonoBehaviour {
     public GameObject gameOverUI;
     public GameObject combatUI;
     public MusicManagement musicManager;
+    public GameObject hud;
 
     // Use this for initialization
     void Start () {
@@ -119,6 +120,7 @@ public class CombatManager : MonoBehaviour {
                 musicManager.gameOver = true;
                 gameOverUI.SetActive(true);
                 combatUI.SetActive(false);
+                hud.SetActive(false);
                 Time.timeScale = 0;
             }
             finished = true;
