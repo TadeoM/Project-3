@@ -19,8 +19,8 @@ public class MusicManagement : MonoBehaviour {
 	void Update () {
 		if(combatSwitcheroo.inCombat && combat.volume < 0.95f)
         {
-            overworld.volume -= 0.05f;
-            combat.volume += 0.05f;
+            overworld.volume -= 0.01f;
+            combat.volume += 0.01f;
         }
         else if (!combatSwitcheroo.inCombat && overworld.volume < 0.95f)
         {
