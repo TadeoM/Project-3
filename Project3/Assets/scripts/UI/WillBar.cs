@@ -28,8 +28,11 @@ public class WillBar : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        Max = dresdon.GetComponent<Dresdon>().MaxMana;
-        SetWill(dresdon.GetComponent<Dresdon>().currentMana);
+        if (dresdon != null)
+        {
+            Max = dresdon.GetComponent<Dresdon>().MaxMana;
+            SetWill(dresdon.GetComponent<Dresdon>().currentMana);
+        }
         willText.text = "Will: " + mCurrentValue + "/" + Max;
     }
 

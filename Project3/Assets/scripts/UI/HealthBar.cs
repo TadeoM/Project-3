@@ -32,11 +32,13 @@ public class HealthBar : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        Max = dresdon.GetComponent<Dresdon>().MaxHealth;
-        SetHealth(dresdon.GetComponent<Dresdon>().currentHealth);
-        maxAmmo = dresdon.GetComponent<Dresdon>().MaxAmmo;
-        currentAmmo = dresdon.GetComponent<Dresdon>().Ammo;
-
+        if (dresdon != null)
+        {
+            Max = dresdon.GetComponent<Dresdon>().MaxHealth;
+            SetHealth(dresdon.GetComponent<Dresdon>().currentHealth);
+            maxAmmo = dresdon.GetComponent<Dresdon>().MaxAmmo;
+            currentAmmo = dresdon.GetComponent<Dresdon>().Ammo;
+        }
         ammoCounter.text = "Ammo: " + currentAmmo + "/" + maxAmmo;
         hpText.text = "HP: " + mCurrentValue + "/" + Max;
     }

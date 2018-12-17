@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameOverScript : MonoBehaviour {
 
+    public GameObject turnManager;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -18,6 +20,7 @@ public class GameOverScript : MonoBehaviour {
     public void RestartLevel()
     {
         Time.timeScale = 1;
+        turnManager.GetComponent<TurnManager>().reset = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
