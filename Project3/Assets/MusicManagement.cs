@@ -42,6 +42,7 @@ public class MusicManagement : MonoBehaviour {
                 combat.clip = combatClips[1];
                 switched = true;
                 combat.Play();
+                combat.loop = true;
             }
         }
     }
