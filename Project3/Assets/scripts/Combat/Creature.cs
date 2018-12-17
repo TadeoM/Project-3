@@ -15,7 +15,7 @@ public class Creature : MonoBehaviour {
     public int currentAnimation; // 0 = idle, 1 = attack, 2 = damaged
     public Vector3 startPos;
     public Vector3 endPos; 
-    private int level;
+    public int level;
     public int nextLevelXP;
     private int maxHealth;
     private int maxMana;
