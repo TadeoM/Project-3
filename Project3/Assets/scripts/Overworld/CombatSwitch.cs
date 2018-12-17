@@ -15,6 +15,7 @@ public class CombatSwitch : MonoBehaviour {
     public GameObject ghoulPrefab;
     public GameObject goblinPrefab;
     public GameObject houndPrefab;
+    public GameObject EnemyHealth;
 
 	// Use this for initialization
 	void Start ()
@@ -65,6 +66,7 @@ public class CombatSwitch : MonoBehaviour {
                         player.transform.rotation = Quaternion.LookRotation(playerDelta, Vector3.up);
                         Vector3 enemyDelta = player.transform.position - currentEnemy.transform.position;
                         currentEnemy.transform.rotation = Quaternion.LookRotation(enemyDelta, Vector3.up);
+                        EnemyHealth.SetActive(true);
                     }
                 }
             }
@@ -82,6 +84,7 @@ public class CombatSwitch : MonoBehaviour {
 
             combatCamera.SetActive(false);
             mainCamera.SetActive(true);
+            EnemyHealth.SetActive(false);
 
             player.GetComponent<PlayerMove>().enabled = true;
             player.GetComponent<Creature>().currentHealth = player.GetComponent<Creature>().MaxHealth;
