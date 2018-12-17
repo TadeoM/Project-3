@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1542,7 +1542,7 @@ GameObject:
   - component: {fileID: 923254960}
   - component: {fileID: 923254959}
   m_Layer: 5
-  m_Name: VolumeButton
+  m_Name: Controls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1556,7 +1556,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 923254957}
   m_LocalRotation: {x: 0.7071071, y: -0, z: -0, w: 0.7071065}
-  m_LocalPosition: {x: 0, y: 0, z: -3.44}
+  m_LocalPosition: {x: 0, y: 0, z: -3.019}
   m_LocalScale: {x: 0.0021036468, y: 0.004, z: 1}
   m_Children:
   - {fileID: 1589738203}
@@ -1565,8 +1565,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.693, y: 1.7}
-  m_SizeDelta: {x: 300, y: 80}
+  m_AnchoredPosition: {x: 2.881, y: 1.7}
+  m_SizeDelta: {x: 777.4925, y: 735.05}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &923254959
 MonoBehaviour:
@@ -2556,7 +2556,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1589738202}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.00000020562}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 923254958}
@@ -2564,8 +2564,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.7999878, y: -40}
+  m_SizeDelta: {x: -140, y: -283.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1589738204
 MonoBehaviour:
@@ -2580,7 +2580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.009433985, g: 0.009211485, b: 0.009211485, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2589,18 +2589,36 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 36
-    m_FontStyle: 0
+    m_FontSize: 20
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 118
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Volume:'
+  m_Text: 'Click on the red highlighted squares on your turn to move across the board.
+
+
+    When you move within one space of an enemy, or they approach you, combat starts.
+
+
+    In combat, select from a variety of physical and magical abilities to damage the
+    enemy, buff yourself or debuff the enemy. If you win the fight, you gain experience.
+    If you lose, you lose the game.
+
+
+    Experience is tracked by the XP bar on the left side, and when it fills you level
+    up. This increases your stats, but beware: Enemies will get stronger as the game
+    goes on.
+
+
+    Work your way through the waves of enemies, build up Dresden''s strength, and
+    when you''re ready, fight the Red Count Vampire to complete your contract and
+    win the game.'
 --- !u!222 &1589738205
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2715,7 +2733,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1722531764}
   m_LocalRotation: {x: 0.7071071, y: -0, z: -0, w: 0.7071065}
-  m_LocalPosition: {x: 0, y: 0, z: -4.28}
+  m_LocalPosition: {x: 0, y: 0, z: -4.464}
   m_LocalScale: {x: 0.0021036468, y: 0.004, z: 1}
   m_Children:
   - {fileID: 1560505726}
@@ -2724,7 +2742,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.182, y: 1.7}
+  m_AnchoredPosition: {x: 3.392, y: 1.7}
   m_SizeDelta: {x: 300, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1722531766
@@ -3448,7 +3466,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Options
+  m_Text: How to Play
 --- !u!222 &2108949223
 CanvasRenderer:
   m_ObjectHideFlags: 0

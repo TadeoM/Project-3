@@ -3,39 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WillBar : MonoBehaviour {
+public class EnemyHB : MonoBehaviour {
 
-    public Image ImgWillBar;
-
+    public Image ImgHealthBar;
     public int Min;
-
     public int Max;
-
     private int mCurrentValue;
-
     private float mCurrentPercent;
-
-    public GameObject dresdon;
-
-    public Text willText;
+    public GameObject enemy;
+   // public Text hpText;
+    public GameObject CBManager;
 
     // Use this for initialization
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        Max = dresdon.GetComponent<Dresdon>().MaxMana;
-        SetWill(dresdon.GetComponent<Dresdon>().currentMana);
-        willText.text = "Will: " + mCurrentValue + "/" + Max;
+        if(CBManager.GetComponent<CombatManager>().enemy != null)
+        {
+            enemy = CBManager.GetComponent<CombatManager>().enemy;
+        }
+        if(enemy != null)
+        {
+            Max = enemy.GetComponent<Creature>().MaxHealth;
+            SetHealth(enemy.GetComponent<Creature>().currentHealth);
+        }
+       
+       // hpText.text = "HP: " + mCurrentValue + "/" + Max;
     }
 
-    public void SetWill(int will)
+    public void SetHealth(int health)
     {
-        if (will != mCurrentValue)
+        if (health != mCurrentValue)
         {
             if (Max - Min == 0)
             {
@@ -44,11 +47,11 @@ public class WillBar : MonoBehaviour {
             }
             else
             {
-                mCurrentValue = will;
+                mCurrentValue = health;
                 mCurrentPercent = (float)mCurrentValue / (float)(Max - Min);
             }
 
-            ImgWillBar.fillAmount = mCurrentPercent;
+            ImgHealthBar.fillAmount = mCurrentPercent;
         }
     }
 
