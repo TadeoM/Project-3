@@ -228,11 +228,11 @@ public class SpellManager : MonoBehaviour {
         Creature otherStats = target.GetComponent<Creature>();
         Creature originStats = origin.GetComponent<Creature>();
 
-        otherStats.CurrentMana -= 3;
+        originStats.CurrentMana -= 3;
         otherStats.Attack *= 0.7f;
         otherStats.Magic *= 0.7f;
-        otherStats.statusEffects.Add("attack", new double[2] { 0.7, 2 });
-        otherStats.statusEffects.Add("magic", new double[2] { 0.7, 2 });
+        //otherStats.statusEffects.Add("attack", new double[2] { 0.7, 2 });
+       // otherStats.statusEffects.Add("magic", new double[2] { 0.7, 2 });
 
         return origin.name + " decreased " + otherStats.name + "'s attack and magic by 30%!";
     }
@@ -248,11 +248,11 @@ public class SpellManager : MonoBehaviour {
         Creature otherStats = target.GetComponent<Creature>();
         Creature originStats = origin.GetComponent<Creature>();
 
-        otherStats.CurrentMana -= 3;
+        originStats.CurrentMana -= 3;
         otherStats.Defense *= 0.7f;
         otherStats.Resistance *= 0.7f;
-        otherStats.statusEffects.Add("defense", new double[2] { 0.7, 2 });
-        otherStats.statusEffects.Add("resistance", new double[2] { 0.7, 2 });
+        //otherStats.statusEffects.Add("defense", new double[2] { 0.7, 2 });
+       // otherStats.statusEffects.Add("resistance", new double[2] { 0.7, 2 });
 
         return origin.name + " decreased " + otherStats.name + "'s defense and resistance by 30%!";
     }
